@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Express.js, a key component of our MERN Stack solution, streamlines backend development for our EventSphere Management project, optimizing performance and facilitating seamless communication between organizers, exhibitors, and attendees at large-scale expos and trade shows.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "EventSphere",
+    "Management",
+    "MERN",
+    "Stack",
+    "fifth",
+    "semester",
+    "Aptech",
+    "event",
+    "coordination"
+  ],
+  "author": "ZAIN-UL-ABEDIN",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "init": "^0.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
