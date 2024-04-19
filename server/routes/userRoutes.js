@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Public Routes
 router.post('/rigester',userController.userRigester)
+router.post('/login',userController.userLogin)
 
 // Protect Routes
 
