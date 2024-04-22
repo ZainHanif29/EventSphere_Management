@@ -4,23 +4,25 @@ import jwt from 'jsonwebtoken'
 import transporter from "../config/mail.js";
 import dotenv from 'dotenv'
 dotenv.config()
+import nodemailer from 'nodemailer'
 
 class userController {
 
     // Rigester
     static userRigester = async (req, res) => {
-        const { FirstName, LastName, Email, Phone, Password } = req.body;
+        const { FirstName, LastName, Email, Password ,Role} = req.body;
+        console.log(FirstName ,LastName,Email,Password,Role)
         const user = await UserModel.findOne({ Email: Email });
         if (user) {
             res.json({ status: 'failed', message: 'user already exit' })
         } else {
-            if (FirstName && LastName && Email && Phone && Password) {
+            if (FirstName && LastName && Email && Password) {
                 if (Password) {
                     try {
                         const hashPassword = await bcrypt.hash(Password, 10)
                         const doc = new UserModel({
-                            FirstName, LastName, Email, Phone, Password: hashPassword
-                        })
+                            FirstName, LastName, Email, Password: hashPassword,Role
+                        });
                         await doc.save();
 
                         // Generate JWT Token
@@ -97,19 +99,20 @@ class userController {
                 console.log(link)
 
                 //  Send Email
-                // let info = await transporter.sendMail({
-                //     from: process.env.EMAIL_FROM,
-                //     to: user.Email,
-                //     subject: "EventSphere - Password Reset Link",
-                //     html: `<a href=${link}>Click Here</a> to Reset Your Password`
-                // })
-
-                res.send({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
+                let info = await transporter.sendMail({
+                    from: process.env.EMAIL_FROM,
+                    to: user.Email,
+                
+                    subject: "EventSphere - Password Reset Link",
+                    html: `<a href=${link}>Click Here</a> to Reset Your Password`
+                })
+                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
             } else {
-                res.send({ "status": "failed", "message": "Email doesn't exists" })
+                res.json({ "status": "failed", "message": "Email doesn't exists" })
             }
         } else {
-            res.send({ "status": "failed", "message": "Email Field is Required" })
+            res.json({ "status": "failed", "message": "Email Field is Required" })
         }
     }
 
@@ -122,18 +125,18 @@ class userController {
             jwt.verify(token, new_secret)
             if (Password && Password_confirmation) {
                 if (Password !== Password_confirmation) {
-                    res.send({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
+                    res.json({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
                 } else {
                     const newHashPassword = await bcrypt.hash(Password, 10)
                     await UserModel.findByIdAndUpdate(user._id, { $set: { Password: newHashPassword } })
                     res.send({ "status": "success", "message": "Password Reset Successfully" })
                 }
             } else {
-                res.send({ "status": "failed", "message": "All Fields are Required" })
+                res.json({ "status": "failed", "message": "All Fields are Required" })
             }
         } catch (error) {
             console.log(error)
-            res.send({ "status": "failed", "message": "Invalid Token" })
+            res.json({ "status": "failed", "message": "Invalid Token" })
         }
     }
 

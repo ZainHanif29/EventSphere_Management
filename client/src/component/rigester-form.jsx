@@ -1,101 +1,62 @@
-// RegistrationForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: '',
-  });
+    const [formData, setFormData] = useState({
+        FirstName: '',
+        LastName: '',
+        Email: '',
+        Password: '',
+        Role: 'attendee'
+    });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  
-//   const handleChange = (e) => {
-//     setFormData({ formData, [e.target.name]: e.target.value });
-//   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    try {
-      const response = await axios.post('http://localhost:8000/api/rigester', 
-      {
-        FirstName:formData.firstName,
-        LastName:formData.lastName,
-        Email:formData.email,
-        Phone:formData.phone,
-        Password:formData.password,
-      }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8000/api/rigester', {
+                FirstName:formData.FirstName,
+                LastName:formData.LastName,
+                Email:formData.Email,
+                Password:formData.Password,
+                Role:formData.Role,
+            });
+            console.log(response.data)
+        } catch (error) {
+            alert(error.response.data.message || 'An error occurred during registration');
+        }
+    };
+
+    return (
+        <div>
+            <h2>User Registration Form</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="firstName">First Name:</label><br />
+                <input type="text" id="firstName" name="FirstName" value={formData.FirstName} onChange={handleChange} required /><br /><br />
+
+                <label htmlFor="lastName">Last Name:</label><br />
+                <input type="text" id="lastName" name="LastName" value={formData.LastName} onChange={handleChange} required /><br /><br />
+
+                <label htmlFor="email">Email:</label><br />
+                <input type="email" id="email" name="Email" value={formData.Email} onChange={handleChange} required /><br /><br />
+
+                <label htmlFor="password">Password:</label><br />
+                <input type="password" id="password" name="Password" value={formData.Password} onChange={handleChange} required /><br /><br />
+
+                <label htmlFor="role">Role:</label><br />
+                <select id="role" name="Role" value={formData.Role} onChange={handleChange}>
+                    <option value="attendee">Attendee</option>
+                    <option value="exhibitor">Exhibitor</option>
+                    <option value="organizer">Organizer</option>
+                </select><br /><br />
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
     );
-      console.log(response.data);
-    } catch (error) {
-      console.error('Registration error:', error);
-    }
-  };
-
-  return (
-    <div className="container">
-      <h1>Registration</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="First Name"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Last Name"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
-    </div>
-  );
 };
 
 export default RegistrationForm;

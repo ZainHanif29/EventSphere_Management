@@ -1,29 +1,31 @@
-
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8000/api/login', {
-        Email:loginData.email,
-        Password:loginData.password,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error('Login error:', error);
-    }
-  };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post("http://localhost:8000/api/login", {
+      Email: loginData.email,
+      Password: loginData.password,
+    });
+    console.log(response.data);
+    console.log(response.data.token);
+  } catch (error) {
+    console.error("Login error:", error);
+  }
+};
+
 
   return (
     <div className="container">
@@ -49,7 +51,9 @@ const LoginForm = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
       </form>
     </div>
   );
