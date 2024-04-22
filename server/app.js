@@ -22,5 +22,5 @@ connectDB(dbURL,dbName)
 app.use('/api',Route)
 
 app.listen(port,()=>{
-    console.log(`Server is running this port ${'http://localhost:3000'}/api/`)
+    console.log(`Server is running this port ${'http://localhost:8000'}/api/`)
 })
