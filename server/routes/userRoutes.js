@@ -11,11 +11,11 @@ router.use('/loggeduser',checkUserAuth)
 // Public Routes
 router.post('/rigester',userController.userRigester)
 router.post('/login',userController.userLogin)
-router.post('/reset-password',userController.sendUserPasswordResetEmail)
-router.post('/reset-password/:id/:token', userController.userPasswordReset)
+router.post('/reset-password',userController.sendUserEmailResetPassword)
+// router.post('/reset-password/:id/:token', userController.userPasswordReset)
 
 // Protect Routes
-router.post('/changepassword',userController.changeUserPassword)
+router.post('/changepassword',userController.changePassword)
 router.post('/loggeduser',userController.loggedUser)
 
 

@@ -8,41 +8,37 @@ import nodemailer from 'nodemailer'
 
 class userController {
 
-    // Rigester
+    
+
+    // Rigester Controller
     static userRigester = async (req, res) => {
-        const { FirstName, LastName, Email, Password ,Role} = req.body;
-        console.log(FirstName ,LastName,Email,Password,Role)
-        const user = await UserModel.findOne({ Email: Email });
-        if (user) {
-            res.json({ status: 'failed', message: 'user already exit' })
-        } else {
-            if (FirstName && LastName && Email && Password) {
-                if (Password) {
-                    try {
-                        const hashPassword = await bcrypt.hash(Password, 10)
-                        const doc = new UserModel({
-                            FirstName, LastName, Email, Password: hashPassword,Role
-                        });
-                        await doc.save();
+        const { FirstName, LastName, Email, Password, Role } = req.body;
+        if (FirstName && LastName && Email && Password && Role){
+            const user = await UserModel.findOne({ Email: Email });
+            if (user) {
+                res.json({ status: 'failed', message: 'user already exit!  😊' })
+            }else{
+                try {
+                    const hashPassword = await bcrypt.hash(Password, 10)
+                    const doc = new UserModel({
+                        FirstName, LastName, Email, Password: hashPassword, Role
+                    });
+                    await doc.save();
+                    // Generate JWT Token
+                    const token = jwt.sign({ userID: doc._id }, process.env.JWT_TOKEN, { expiresIn:  process.env.JWT_TOKEN_EXP})
 
-                        // Generate JWT Token
-                        const token = jwt.sign({ userID: doc._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
+                    res.json({ status: 'success', message: "user rigester!  👍", 'token': token })
 
-                        res.json({ status: 'success', message: "User Rigester!!! 👍", 'token': token })
-
-                    } catch (error) {
-                        res.json({ status: 'failed', message: `User Not Rigester!!! 😢  ${error}` })
-                    }
-                } else {
-                    res.json({ status: 'failed', message: "password and confirm password doesn't match" })
+                } catch (error) {
+                    res.json({ status: 'failed', message: `user not rigester!  👎  ${error}` })
                 }
-            } else {
-                res.json({ status: 'failed', message: 'all filed are required' })
-            }
+            } 
+        }else{
+            res.json({ status: 'failed', message: 'all filed are required!  😊 ' })
         }
     }
 
-    // Login
+    // Login Controller
     static userLogin = async (req, res) => {
         const { Email, Password } = req.body;
         if (Email && Password) {
@@ -51,44 +47,42 @@ class userController {
                 const password = await bcrypt.compare(Password, user.Password);
                 if ((Email === user.Email) && password) {
                     // Generate JWT Token
-                    const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
-                    res.json({ status: "success", message: "login successfully!!! 👍", 'token': token })
+                    const token = jwt.sign({ userID: user._id },process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
+                    res.json({ status: "success", message: "login successfully! 👍", 'token': token })
                 } else {
-                    res.json({ status: "failed", message: "Email or Password is not valid! 😢" })
+                    res.json({ status: "failed", message: "email or password is not valid!  😢" })
                 }
             } else {
-                res.json({ status: "failed", message: "User not Rigester  😒" })
+                res.json({ status: "failed", message: "user not rigester!  😊" })
             }
         } else {
-            res.json({ status: "failed", message: "all field are required  😒" })
-
+            res.json({ status: "failed", message: "all field are required!  😊" })
         }
-
     }
 
     // Change Password
-    static changeUserPassword = async (req, res) => {
+    static changePassword = async (req, res) => {
         const { Password, PasswordConfirm } = req.body
         if (Password && PasswordConfirm) {
             if (Password !== PasswordConfirm) {
-                res.json({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
+                res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
             } else {
-                const newHashPassword = await bcrypt.hash(Password, 10)
-                await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: newHashPassword } })
-                res.json({ "status": "success", "message": "Password changed succesfully" })
+                const hashPassword = await bcrypt.hash(Password, 10)
+                await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
+                res.json({ status: "success", message: "password changed succesfully!  👍" })
             }
         } else {
-            res.json({ "status": "failed", "message": "All Fields are Required" })
+            res.json({ status: "failed", message: "all fields are required" })
         }
     }
 
     // Logged User
     static loggedUser = async (req, res) => {
-        res.json({ 'user': req.user })
+        res.json({ user: req.user })
     }
 
     // Reset Email
-    static sendUserPasswordResetEmail = async (req, res) => {
+    static sendUserEmailResetPassword = async (req, res) => {
         const { Email } = req.body
         if (Email) {
             const user = await UserModel.findOne({ Email: Email })
@@ -96,18 +90,17 @@ class userController {
                 const secret = user._id + process.env.JWT_TOKEN
                 const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
                 const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
-                console.log(link)
 
                 //  Send Email
                 let info = await transporter.sendMail({
                     from: process.env.EMAIL_FROM,
                     to: user.Email,
-                
+
                     subject: "EventSphere - Password Reset Link",
-                    html: `<a href=${link}>Click Here</a> to Reset Your Password`
+                    html: `<center><button href=${link}>Reset Password</button></center>`
                 })
                 console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-                res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
+                res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your URL" , url: nodemailer.getTestMessageUrl(info) , Link:link})
             } else {
                 res.json({ "status": "failed", "message": "Email doesn't exists" })
             }
@@ -116,29 +109,29 @@ class userController {
         }
     }
 
-    static userPasswordReset = async (req, res) => {
-        const { Password, Password_confirmation } = req.body
-        const { id, token } = req.params
-        const user = await UserModel.findById(id)
-        const new_secret = user._id + process.env.JWT_TOKEN
-        try {
-            jwt.verify(token, new_secret)
-            if (Password && Password_confirmation) {
-                if (Password !== Password_confirmation) {
-                    res.json({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
-                } else {
-                    const newHashPassword = await bcrypt.hash(Password, 10)
-                    await UserModel.findByIdAndUpdate(user._id, { $set: { Password: newHashPassword } })
-                    res.send({ "status": "success", "message": "Password Reset Successfully" })
-                }
-            } else {
-                res.json({ "status": "failed", "message": "All Fields are Required" })
-            }
-        } catch (error) {
-            console.log(error)
-            res.json({ "status": "failed", "message": "Invalid Token" })
-        }
-    }
+    // static userPasswordReset = async (req, res) => {
+    //     const { Password, Password_confirmation } = req.body
+    //     const { id, token } = req.params
+    //     const user = await UserModel.findById(id)
+    //     const new_secret = user._id + process.env.JWT_TOKEN
+    //     try {
+    //         jwt.verify(token, new_secret)
+    //         if (Password && Password_confirmation) {
+    //             if (Password !== Password_confirmation) {
+    //                 res.json({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
+    //             } else {
+    //                 const newHashPassword = await bcrypt.hash(Password, 10)
+    //                 await UserModel.findByIdAndUpdate(user._id, { $set: { Password: newHashPassword } })
+    //                 res.send({ "status": "success", "message": "Password Reset Successfully" })
+    //             }
+    //         } else {
+    //             res.json({ "status": "failed", "message": "All Fields are Required" })
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //         res.json({ "status": "failed", "message": "Invalid Token" })
+    //     }
+    // }
 
 }
 
