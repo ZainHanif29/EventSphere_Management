@@ -8,7 +8,8 @@ const router = express.Router()
 // Route level Middleware - To Protect Route
 router.use('/changepassword',checkUserAuth)
 router.use('/loggeduser',checkUserAuth)
-router.use('/event',checkUserAuth)
+router.use('/addEvent',checkUserAuth)
+
 
 
 
@@ -20,8 +21,16 @@ router.post('/reset-password',userController.sendUserEmailResetPassword)
 // Protect Routes
 router.post('/changepassword',userController.changePassword)
 router.post('/loggeduser',userController.loggedUser)
-router.post('/event',eventController.addEvent)
 
+
+
+// Admin Routes
+
+// for Event Model
+router.post('/addEvent',eventController.addEvent)
+router.get('/getevent',eventController.getEvents)
+router.delete('/deleteEvent/:eventId',eventController.deleteEvent)
+router.put('/updateEvent/:eventId',eventController.updateEvent)
 
 
 // Routes Export 
