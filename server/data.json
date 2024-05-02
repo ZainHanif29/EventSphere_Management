@@ -1,0 +1,156 @@
+[
+    {
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "johndoe@example.com",
+        "Password": "password123",
+        "Role": "attendee"
+    },
+    {
+        "FirstName": "Jane",
+        "LastName": "Smith",
+        "Email": "janesmith@example.com",
+        "Password": "securepass456",
+        "Role": "exhibitor"
+    },
+    {
+        "FirstName": "Alice",
+        "LastName": "Johnson",
+        "Email": "alicejohnson@example.com",
+        "Password": "mypassword789",
+        "Role": "organizer"
+    },
+    {
+        "FirstName": "Bob",
+        "LastName": "Brown",
+        "Email": "bobbrown@example.com",
+        "Password": "bobpassword101",
+        "Role": "attendee"
+    },
+    {
+        "FirstName": "Charlie",
+        "LastName": "Davis",
+        "Email": "charliedavis@example.com",
+        "Password": "charliepass102",
+        "Role": "attendee"
+    },
+    {
+        "FirstName": "Diana",
+        "LastName": "Clark",
+        "Email": "dianaclark@example.com",
+        "Password": "diana123pass",
+        "Role": "exhibitor"
+    },
+    {
+        "FirstName": "Ethan",
+        "LastName": "Moore",
+        "Email": "ethanmoore@example.com",
+        "Password": "ethan456pass",
+        "Role": "organizer"
+    },
+    {
+        "FirstName": "Fiona",
+        "LastName": "Lewis",
+        "Email": "fionalewis@example.com",
+        "Password": "fiona789pass",
+        "Role": "attendee"
+    },
+    {
+        "FirstName": "George",
+        "LastName": "Walker",
+        "Email": "georgewalker@example.com",
+        "Password": "george101pass",
+        "Role": "attendee"
+    },
+    {
+        "FirstName": "Hannah",
+        "LastName": "Martin",
+        "Email": "hannahmartin@example.com",
+        "Password": "hannah102pass",
+        "Role": "exhibitor"
+    },
+
+
+
+
+    {
+        "title": "Annual Book Lovers Meetup",
+        "date": "2024-05-10",
+        "time": "10:00 AM",
+        "location": "Karachi",
+        "theme": "Book Fair",
+        "description": "A gathering for book enthusiasts to explore new releases, classics, and meet authors."
+    },
+    {
+        "title": "International Business Expo",
+        "date": "2024-06-15",
+        "time": "09:00 AM",
+        "location": "Lahore",
+        "theme": "Big Trade show",
+        "description": "Explore international business opportunities and innovations in various industries."
+    },
+    {
+        "title": "Health and Wellness Expo",
+        "date": "2024-07-20",
+        "time": "08:30 AM",
+        "location": "Islamabad",
+        "theme": "Expo",
+        "description": "Dedicated to showcasing the latest in health, wellness, and fitness products."
+    },
+    {
+        "title": "Educational Innovations Fair",
+        "date": "2024-08-05",
+        "time": "10:00 AM",
+        "location": "Karachi",
+        "theme": "Expo",
+        "description": "Platform for educational professionals to share and discover new teaching tools and techniques."
+    },
+    {
+        "title": "Tech World Conference",
+        "date": "2024-09-25",
+        "time": "11:00 AM",
+        "location": "Lahore",
+        "theme": "Expo",
+        "description": "A premier event for tech enthusiasts to network, learn about upcoming trends, and experience new technology."
+    },
+    {
+        "title": "Annual Art Show",
+        "date": "2024-10-10",
+        "time": "12:00 PM",
+        "location": "Islamabad",
+        "theme": "Expo",
+        "description": "A showcase of contemporary and classic art from renowned artists and galleries."
+    },
+    {
+        "title": "Culinary Delights Festival",
+        "date": "2024-11-15",
+        "time": "02:00 PM",
+        "location": "Karachi",
+        "theme": "Expo",
+        "description": "A culinary adventure featuring top chefs, restaurants, and unique dishes from around the world."
+    },
+    {
+        "title": "Fashion and Design Symposium",
+        "date": "2024-12-01",
+        "time": "01:00 PM",
+        "location": "Lahore",
+        "theme": "Expo",
+        "description": "Explore the latest trends in fashion and design, featuring workshops and panels with industry leaders."
+    },
+    {
+        "title": "Real Estate and Architecture Expo",
+        "date": "2025-01-20",
+        "time": "03:00 PM",
+        "location": "Islamabad",
+        "theme": "Expo",
+        "description": "A comprehensive event for real estate professionals, architects, and builders to network and discover new market trends."
+    },
+    {
+        "title": "Green Living Expo",
+        "date": "2025-02-10",
+        "time": "04:00 PM",
+        "location": "Karachi",
+        "theme": "Expo",
+        "description": "Focused on sustainable living solutions, featuring eco-friendly products and green technology."
+    }
+]

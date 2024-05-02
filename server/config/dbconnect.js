@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const connectDB = async(dbURL,dbName)=>{
     try{
         await mongoose.connect(`${dbURL}/${dbName}`)
-        console.log("'Scccessful' DB Connected !  👍")
+        console.log("'Successful' DB Connected !  👍")
     }catch(e){
-        console.log("'Un Scccessful' DB not Connected !  👎")
+        console.log("'Un Successful' DB not Connected !  👎")
     }
 }
 

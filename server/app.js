@@ -23,4 +23,4 @@ app.use('/api',Route)
 
 app.listen(port,()=>{
     console.log(`Server is running this port ${'http://localhost:8000'}/api/`)
-})
+});
