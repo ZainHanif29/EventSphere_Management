@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     Password: { type: String, required: true, trim: true },
     Role: { type: String, enum: ['organizer', 'exhibitor', 'attendee'], default: 'attendee' },
     created_at: { type: Date, default: Date.now }
-})
+},{ timestamps: true })
 
 const UserModel = mongoose.model("User", userSchema)
 

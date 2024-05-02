@@ -1,4 +1,4 @@
-import EventModel from "../models/EventModel.js";
+import EventModel from "../models/eventModel.js";
 import UserModel from "../models/userModel.js";
 import BoothModel from "../models/boothModel.js"
 
@@ -12,13 +12,11 @@ class boothController {
             try {
                 const data = await EventModel.findById(req.user._id);
                 const ID = data._id;
-                const Name = data.FirstName + ' ' + data.LastName;
-                const Email = data.Email;
                 const Role = data.Role;
                 if (Role == 'organizer') {
                     const doc = new EventModel({
                         boothName, boothDetail, city,
-                        created_ID: ID, created_Name: Name, created_Email: Email, created_Role: Role
+                        created_ID: ID
                     });
                     await doc.save();
                     res.json({ status: "success", message: "Add booth!  👍" })

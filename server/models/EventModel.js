@@ -8,11 +8,8 @@ const eventSchema = new mongoose.Schema({
     theme: { type: String, required: true, enum: ['Book Fair', 'Big Trade show', 'Expo'] },
     description: { type: String, required: true },
     created_at: { type: Date, default: Date.now },
-    created_ID: { type: String },
-    created_Name: { type: String },
-    created_Email: { type: String },
-    created_Role: { type: String },
-});
+    created_ID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+},{ timestamps: true });
 
 const EventModel = mongoose.model('Event', eventSchema);
 

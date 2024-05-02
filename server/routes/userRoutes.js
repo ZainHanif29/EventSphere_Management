@@ -1,6 +1,6 @@
 import express from 'express'
 import userController from '../controllers/userController.js'
-import eventController from '../controllers/EventController.js'
+import eventController from '../controllers/eventController.js'
 import checkUserAuth from '../middlewares/auth-middlewares.js'
 import boothController from '../controllers/boothController.js'
 

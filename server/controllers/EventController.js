@@ -1,4 +1,4 @@
-import EventModel from "../models/EventModel.js";
+import EventModel from "../models/eventModel.js";
 import UserModel from "../models/userModel.js";
 
 class eventController {
@@ -10,13 +10,14 @@ class eventController {
             try {
                 const data = await UserModel.findById(req.user._id);
                 const ID = data._id;
-                const Name = data.FirstName + ' ' + data.LastName;
-                const Email = data.Email;
+                // const Name = data.FirstName + ' ' + data.LastName;
+                // const Email = data.Email;
                 const Role = data.Role;
+                console.log(Role)
                 if (Role == 'exhibitor' || Role == 'organizer') {
                     const doc = new EventModel({
-                        title, theme,location, description,
-                        created_ID: ID, created_Name: Name, created_Email: Email, created_Role: Role
+                        title, theme,location, description,created_ID: ID
+                        // created_ID: ID, created_Name: Name, created_Email: Email, created_Role: Role
                     });
                     await doc.save();
                     res.json({ status: "success", message: "Add Event!  👍" })
