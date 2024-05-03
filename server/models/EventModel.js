@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
     location: { type: String, required: true, enum: ['Karachi', 'Lahore', 'Islamabad'], default: 'Karachi' },
     theme: { type: String, required: true, enum: ['Book Fair', 'Big Trade show', 'Expo'] },
     description: { type: String, required: true },
-    created_at: { type: Date, default: Date.now },
+    // created_at: { type: Date, default: Date.now },
     created_ID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 },{ timestamps: true });
 

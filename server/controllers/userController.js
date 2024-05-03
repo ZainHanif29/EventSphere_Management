@@ -11,8 +11,8 @@ class userController {
 
     // Rigester Controller
     static userRigester = async (req, res) => {
-        const { FirstName, LastName, Email, Password,Role } = req.body;
-        if (FirstName && LastName && Email && Password ) {
+        const { FirstName, LastName, Email, Password, Role } = req.body;
+        if (FirstName && LastName && Email && Password) {
             const user = await UserModel.findOne({ Email: Email });
             if (user) {
                 res.json({ status: 'failed', message: 'user already exit!  😊' })
@@ -88,14 +88,16 @@ class userController {
             if (user) {
                 const secret = user._id + process.env.JWT_TOKEN
                 const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
-                const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
+                // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
+                const link = `https://aptech-education.com.pk/`
 
                 //  Send Email
                 let info = await transporter.sendMail({
                     from: process.env.EMAIL_FROM,
-                    to: user.Email,
+                    // to: user.Email,
+                    to: 'zainhanif20002902@gmail.com',
                     subject: "EventSphere - Password Reset Link",
-                    html: `<center><button href=${link}>Reset Password</button></center>`
+                    html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
                 })
                 res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
             } else {

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     Email: { type: String, required: true, trim: true },
     Password: { type: String, required: true, trim: true },
     Role: { type: String, enum: ['organizer', 'exhibitor', 'attendee'], default: 'attendee' },
-    created_at: { type: Date, default: Date.now }
+    // created_at: { type: Date, default: Date.now }
 },{ timestamps: true })
 
 const UserModel = mongoose.model("User", userSchema)

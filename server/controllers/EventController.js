@@ -42,6 +42,7 @@ class eventController {
             }
             const data = await UserModel.findById(req.user._id);
             const role = data.Role;
+            console.log(role)
             if(role == 'exhibitor'){
                 const data = await EventModel.find({created_Role:'exhibitor'})
                 return res.json({ status: "success", message: data });
@@ -53,7 +54,6 @@ class eventController {
             if(role == 'attendee'){
                 return res.json({ status: "failed", message: "attendee not allowed!" });
             }
-            // res.json({ status: "success", message: events });
         } catch (e) {
             res.json({ status: "failed", message: `Failed to fetch events: ${e} 👎` });
         }

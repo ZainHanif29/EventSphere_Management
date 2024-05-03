@@ -40,7 +40,7 @@ router.post('/loggeduser', userController.loggedUser)
 // for Event Model
 router.post('/addEvent', eventController.addEvent)
 router.get('/getevent', eventController.getEvents)
-router.get('/getEventsClient', eventController.getEvents)
+router.get('/getEventsClient', eventController.getEventsClient)
 router.delete('/deleteEvent/:eventId', eventController.deleteEvent)
 router.put('/updateEvent/:eventId', eventController.updateEvent)
 
