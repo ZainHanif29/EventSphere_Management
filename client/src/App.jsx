@@ -1,9 +1,13 @@
 // App.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LoginForm from './component/login-form';
-import RegistrationForm from './component/rigester-form';
-import UserAuth from './component/rigester';
+
+import UserAuth from './component/rigester_login.jsx';
+import RegistrationForm from './component/auth/rigester.jsx';
+import LoginForm from './component/auth/login.jsx';
+import ForgotPasswordForm from './component/auth/forget-password.jsx';
+import ChangePasswordForm from './component/auth/change-password.jsx';
+import UserTable from './component/admin/user.jsx';
 
 function App() {
   return (
@@ -11,12 +15,14 @@ function App() {
       <div className="row">
         <h1>EventSphere_Management</h1>
       </div>
-      {/* <Routes>
+      <Routes>
+        <Route path="/" element={<UserAuth />} />
+        <Route path="/r" element={<RegistrationForm />} />
         <Route path="/l" element={<LoginForm />} />
-        <Route path="/" element={<RegistrationForm />} />
-      </Routes> */}
-
-      <UserAuth />
+        <Route path="/f" element={<ForgotPasswordForm />} />
+        <Route path="/c" element={<ChangePasswordForm />} />
+        <Route path="/user" element={<UserTable />} />
+      </Routes>
     </div>
   );
 }

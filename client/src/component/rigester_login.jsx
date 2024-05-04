@@ -63,13 +63,13 @@ function UserAuth() {
                 )}
                 <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} />
                 <input type="password" name="password" placeholder="Password" value={user.password} onChange={handleChange} />
-                {/* {!isRegistered && (
+                {!isRegistered && (
                     <select name="role" value={user.role} onChange={handleChange}>
                         <option value="attendee">Attendee</option>
                         <option value="organizer">Organizer</option>
                         <option value="exhibitor">Exhibitor</option>
                     </select>
-                )} */}
+                )}
                 <button type="submit">{isRegistered ? 'Login' : 'Register'}</button>
             </form>
             <button onClick={() => setIsRegistered(!isRegistered)}>

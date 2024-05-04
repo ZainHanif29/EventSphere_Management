@@ -18,7 +18,8 @@ const router = express.Router();
 router.post('/rigester', userControllerPublic.userRigester)
 router.post('/login', userControllerPublic.userLogin)
 router.post('/loggeduser', checkUserAuth, userControllerPublic.loggedUser)
-// router.post('/changepassword',checkUserAuth ,userController.changePassword)
+router.post('/changepassword',checkUserAuth ,userControllerPublic.changePassword)
+router.post('/restpassword' ,userControllerPublic.sendUserEmailResetPassword)
 
 // Event Routes for [organizer or exhibitor]
 router.post('/addEvent', checkUserAuth, eventController.addEvent)

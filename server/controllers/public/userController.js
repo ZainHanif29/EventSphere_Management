@@ -65,51 +65,55 @@ class userControllerPublic {
         res.json({ user: req.user })
     }
 
-    // // Change Password
-    // static changePassword = async (req, res) => {
-    //     const { Password, PasswordConfirm } = req.body
-    //     if (Password && PasswordConfirm) {
-    //         if (Password !== PasswordConfirm) {
-    //             res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
-    //         } else {
-    //             const hashPassword = await bcrypt.hash(Password, 10)
-    //             await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
-    //             res.json({ status: "success", message: "password changed succesfully!  👍" })
-    //         }
-    //     } else {
-    //         res.json({ status: "failed", message: "all fields are required" })
-    //     }
-    // }
+    // Change Password
+    static changePassword = async (req, res) => {
+        try{
+            const { Password, PasswordConfirm } = req.body
+            if (Password && PasswordConfirm) {
+                if (Password !== PasswordConfirm) {
+                    res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
+                } else {
+                    const hashPassword = await bcrypt.hash(Password, 10)
+                    await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
+                    res.json({ status: "success", message: `password changed succesfully!  👍${req.user.Email}` })
+                }
+            } else {
+                res.json({ status: "failed", message: "all fields are required" })
+            }
+        }catch(e){
+            res.json({ status: "failed", message: e})
+        }
+    }
 
 
 
-    // // Reset Email
-    // static sendUserEmailResetPassword = async (req, res) => {
-    //     const { Email } = req.body
-    //     if (Email) {
-    //         const user = await UserModel.findOne({ Email: Email })
-    //         if (user) {
-    //             const secret = user._id + process.env.JWT_TOKEN
-    //             const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
-    //             // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
-    //             const link = `https://aptech-education.com.pk/`
+    // Reset Email
+    static sendUserEmailResetPassword = async (req, res) => {
+        const { Email } = req.body
+        if (Email) {
+            const user = await UserModel.findOne({ Email: Email })
+            if (user) {
+                const secret = user._id + process.env.JWT_TOKEN
+                const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
+                // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
+                const link = `https://aptech-education.com.pk/`
 
-    //             //  Send Email
-    //             let info = await transporter.sendMail({
-    //                 from: process.env.EMAIL_FROM,
-    //                 // to: user.Email,
-    //                 to: 'zainhanif20002902@gmail.com',
-    //                 subject: "EventSphere - Password Reset Link",
-    //                 html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
-    //             })
-    //             res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
-    //         } else {
-    //             res.json({ "status": "failed", "message": "Email doesn't exists" })
-    //         }
-    //     } else {
-    //         res.json({ "status": "failed", "message": "Email Field is Required" })
-    //     }
-    // }
+                //  Send Email
+                let info = await transporter.sendMail({
+                    from: process.env.EMAIL_FROM,
+                    // to: user.Email,
+                    to: 'zainhanif20002902@gmail.com',
+                    subject: "EventSphere - Password Reset Link",
+                    html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
+                })
+                res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
+            } else {
+                res.json({ "status": "failed", "message": "Email doesn't exists" })
+            }
+        } else {
+            res.json({ "status": "failed", "message": "Email Field is Required" })
+        }
+    }
 
 }
 
