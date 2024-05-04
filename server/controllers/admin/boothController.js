@@ -1,6 +1,6 @@
-import EventModel from "../models/eventModel.js";
-import UserModel from "../models/userModel.js";
-import BoothModel from "../models/boothModel.js"
+import EventModel from "../../models/admin/eventModel.js";
+import UserModel from "../../models/public/userModel.js";
+import BoothModel from "../../models/admin/boothModel.js"
 
 class boothController {
 

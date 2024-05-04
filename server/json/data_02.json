@@ -1,31 +1,22 @@
 {
     "users": [
       {
-        "_id": "6224f0ad3a3f44b19207e111",
         "FirstName": "Alice",
         "LastName": "Johnson",
         "Email": "alice.johnson@example.com",
-        "Password": "encrypted_password1",
-        "Role": "organizer",
-        "created_at": "2024-04-30T08:00:00Z"
+        "Password": "encrypted_password1"
       },
       {
-        "_id": "6224f0ad3a3f44b19207e112",
         "FirstName": "Bob",
         "LastName": "Smith",
         "Email": "bob.smith@example.com",
-        "Password": "encrypted_password2",
-        "Role": "exhibitor",
-        "created_at": "2024-04-30T08:05:00Z"
+        "Password": "encrypted_password2"
       },
       {
-        "_id": "6224f0ad3a3f44b19207e113",
         "FirstName": "Carol",
         "LastName": "Martinez",
         "Email": "carol.martinez@example.com",
-        "Password": "encrypted_password3",
-        "Role": "attendee",
-        "created_at": "2024-04-30T08:10:00Z"
+        "Password": "encrypted_password3"
       }
     ],
     "events": [

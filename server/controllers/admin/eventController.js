@@ -1,5 +1,5 @@
-import EventModel from "../models/eventModel.js";
-import UserModel from "../models/userModel.js";
+import EventModel from "../../models/admin/eventModel.js";
+import UserModel from "../../models/public/userModel.js";
 
 class eventController {
 

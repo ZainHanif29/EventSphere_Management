@@ -1,11 +1,11 @@
-import UserModel from "../models/userModel.js";
+import UserModel from "../../models/public/userModel.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import transporter from "../config/mail.js";
+import transporter from "../../config/mail.js";
 import dotenv from 'dotenv'
 dotenv.config()
 
-class userController {
+class userControllerPublic {
 
 
 
@@ -59,55 +59,60 @@ class userController {
         }
     }
 
-    // Change Password
-    static changePassword = async (req, res) => {
-        const { Password, PasswordConfirm } = req.body
-        if (Password && PasswordConfirm) {
-            if (Password !== PasswordConfirm) {
-                res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
-            } else {
-                const hashPassword = await bcrypt.hash(Password, 10)
-                await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
-                res.json({ status: "success", message: "password changed succesfully!  👍" })
-            }
-        } else {
-            res.json({ status: "failed", message: "all fields are required" })
-        }
-    }
 
     // Logged User
     static loggedUser = async (req, res) => {
         res.json({ user: req.user })
     }
 
-    // Reset Email
-    static sendUserEmailResetPassword = async (req, res) => {
-        const { Email } = req.body
-        if (Email) {
-            const user = await UserModel.findOne({ Email: Email })
-            if (user) {
-                const secret = user._id + process.env.JWT_TOKEN
-                const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
-                // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
-                const link = `https://aptech-education.com.pk/`
+    // // Change Password
+    // static changePassword = async (req, res) => {
+    //     const { Password, PasswordConfirm } = req.body
+    //     if (Password && PasswordConfirm) {
+    //         if (Password !== PasswordConfirm) {
+    //             res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
+    //         } else {
+    //             const hashPassword = await bcrypt.hash(Password, 10)
+    //             await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
+    //             res.json({ status: "success", message: "password changed succesfully!  👍" })
+    //         }
+    //     } else {
+    //         res.json({ status: "failed", message: "all fields are required" })
+    //     }
+    // }
 
-                //  Send Email
-                let info = await transporter.sendMail({
-                    from: process.env.EMAIL_FROM,
-                    // to: user.Email,
-                    to: 'zainhanif20002902@gmail.com',
-                    subject: "EventSphere - Password Reset Link",
-                    html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
-                })
-                res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
-            } else {
-                res.json({ "status": "failed", "message": "Email doesn't exists" })
-            }
-        } else {
-            res.json({ "status": "failed", "message": "Email Field is Required" })
-        }
-    }
+
+
+    // // Reset Email
+    // static sendUserEmailResetPassword = async (req, res) => {
+    //     const { Email } = req.body
+    //     if (Email) {
+    //         const user = await UserModel.findOne({ Email: Email })
+    //         if (user) {
+    //             const secret = user._id + process.env.JWT_TOKEN
+    //             const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
+    //             // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
+    //             const link = `https://aptech-education.com.pk/`
+
+    //             //  Send Email
+    //             let info = await transporter.sendMail({
+    //                 from: process.env.EMAIL_FROM,
+    //                 // to: user.Email,
+    //                 to: 'zainhanif20002902@gmail.com',
+    //                 subject: "EventSphere - Password Reset Link",
+    //                 html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
+    //             })
+    //             res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
+    //         } else {
+    //             res.json({ "status": "failed", "message": "Email doesn't exists" })
+    //         }
+    //     } else {
+    //         res.json({ "status": "failed", "message": "Email Field is Required" })
+    //     }
+    // }
 
 }
 
-export default userController;
+export default userControllerPublic;
+
+

@@ -8,6 +8,7 @@ const eventSchema = new mongoose.Schema({
     BoothID: { type: mongoose.Schema.Types.ObjectId, ref: 'Booth', required: true },
     StartTime:{type:Date},
     EndTime:{type:Date},
+    Status: { type: String, required: true, enum: ['Aprove', 'Reject', 'Reserve'], default: 'Reserve' },
     created_at: { type: Date, default: Date.now },
 
 }, { timestamps: true }

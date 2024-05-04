@@ -1,52 +1,42 @@
 import express from 'express'
-import userController from '../controllers/userController.js'
-import eventController from '../controllers/eventController.js'
+
+// Middleware
 import checkUserAuth from '../middlewares/auth-middlewares.js'
-import boothController from '../controllers/boothController.js'
 
-const router = express.Router()
+// Controller
+import userControllerPublic from '../controllers/public/userController.js'
+import eventController from '../controllers/admin/eventController.js'
+import boothController from '../controllers/admin/boothController.js'
+import userControllerAdmin from '../controllers/admin/userController.js'
 
-// Route level Middleware - To Protect Route
-
-// User controller
-router.use('/loggeduser', checkUserAuth)
-router.use('/changepassword', checkUserAuth)
-// Event Controller
-router.use('/addEvent', checkUserAuth)
-router.use('/getevent', checkUserAuth)
-router.use('/deleteEvent/:eventId', checkUserAuth)
-router.use('/updateEvent/:eventId', checkUserAuth)
-// Booth controller
-router.use('/addBooth', checkUserAuth)
-router.use('/getBooth', checkUserAuth)
+const router = express.Router();
 
 
 
 
+// User Rigester Routes
+router.post('/rigester', userControllerPublic.userRigester)
+router.post('/login', userControllerPublic.userLogin)
+router.post('/loggeduser', checkUserAuth, userControllerPublic.loggedUser)
+// router.post('/changepassword',checkUserAuth ,userController.changePassword)
 
-// Public Routes
-router.post('/rigester', userController.userRigester)
-router.post('/login', userController.userLogin)
-router.post('/reset-password', userController.sendUserEmailResetPassword)
+// Event Routes for [organizer or exhibitor]
+router.post('/addEvent', checkUserAuth, eventController.addEvent)
+router.get('/getevent', checkUserAuth, eventController.getEvents)
+router.delete('/deleteEvent/:eventId', checkUserAuth, eventController.deleteEvent)
+router.put('/updateEvent/:eventId', checkUserAuth, eventController.updateEvent)
 
-// Protect Routes
-router.post('/changepassword', userController.changePassword)
-router.post('/loggeduser', userController.loggedUser)
+// organizer Routes
+router.post('/addBooth', checkUserAuth, boothController.addBooth)
+router.get('/getBooth', checkUserAuth, boothController.getBooth)
+router.get('/getuser', checkUserAuth, userControllerAdmin.getUser)
 
+// exhibitor Routes
 
-
-// Admin Routes
-
-// for Event Model
-router.post('/addEvent', eventController.addEvent)
-router.get('/getevent', eventController.getEvents)
+// attendee Routes
 router.get('/getEventsClient', eventController.getEventsClient)
-router.delete('/deleteEvent/:eventId', eventController.deleteEvent)
-router.put('/updateEvent/:eventId', eventController.updateEvent)
 
-// for Booth Model
-router.post('/addBooth', boothController.addBooth)
-router.get('/getBooth', boothController.getBooth)
+
 
 
 

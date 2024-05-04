@@ -3,6 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginForm from './component/login-form';
 import RegistrationForm from './component/rigester-form';
+import UserAuth from './component/rigester';
 
 function App() {
   return (
@@ -10,10 +11,12 @@ function App() {
       <div className="row">
         <h1>EventSphere_Management</h1>
       </div>
-      <Routes>
+      {/* <Routes>
         <Route path="/l" element={<LoginForm />} />
         <Route path="/" element={<RegistrationForm />} />
-      </Routes>
+      </Routes> */}
+
+      <UserAuth />
     </div>
   );
 }
