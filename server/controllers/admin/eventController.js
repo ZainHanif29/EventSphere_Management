@@ -5,8 +5,8 @@ class eventController {
 
     // Add Event
     static addEvent = async (req, res) => {
-        const { title, theme, location, description } = req.body;
-        if (title && theme && description) {
+        const { title, theme, location, description ,date} = req.body;
+        if (title && theme && description && date) {
             try {
                 const data = await UserModel.findById(req.user._id);
                 const ID = data._id;
@@ -16,7 +16,7 @@ class eventController {
                 console.log(Role)
                 if (Role == 'exhibitor' || Role == 'organizer') {
                     const doc = new EventModel({
-                        title, theme,location, description,created_ID: ID
+                        title, theme,location, description,date,created_ID: ID
                         // created_ID: ID, created_Name: Name, created_Email: Email, created_Role: Role
                     });
                     await doc.save();
@@ -42,14 +42,13 @@ class eventController {
             }
             const data = await UserModel.findById(req.user._id);
             const role = data.Role;
-            console.log(role)
             if(role == 'exhibitor'){
-                const data = await EventModel.find({created_Role:'exhibitor'})
-                return res.json({ status: "success", message: data });
+                const ev = await EventModel.find({created_Role:'exhibitor'})
+                return res.json({ status: "success", message: ev });
             }
             if(role == 'organizer'){
-                const data = await EventModel.find({created_Role:'organizer'})
-                return res.json({ status: "success", message: data });
+                const ev = await EventModel.find()
+                return res.json({ status: "success", message: ev });
             }
             if(role == 'attendee'){
                 return res.json({ status: "failed", message: "attendee not allowed!" });

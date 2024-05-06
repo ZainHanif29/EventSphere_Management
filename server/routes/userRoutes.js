@@ -15,7 +15,7 @@ const router = express.Router();
 
 
 // User Rigester Routes
-router.post('/rigester', userControllerPublic.userRigester)
+router.post('/regester', userControllerPublic.userRigester)
 router.post('/login', userControllerPublic.userLogin)
 router.post('/loggeduser', checkUserAuth, userControllerPublic.loggedUser)
 router.post('/changepassword',checkUserAuth ,userControllerPublic.changePassword)

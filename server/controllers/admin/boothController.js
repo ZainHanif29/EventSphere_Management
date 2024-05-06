@@ -41,7 +41,7 @@ class boothController {
             const data = await UserModel.findById(req.user._id);
             const role = data.Role;
             if (role == 'attendee') {
-                return res.json({ status: "success", message: "attendee not allowed!" });
+                return res.json({ status: "failed", message: "attendee not allowed!" });
             }
             const showBooth = await BoothModel.find()
             res.json({ status: "success", message: showBooth });

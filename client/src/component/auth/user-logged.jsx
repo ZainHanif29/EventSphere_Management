@@ -14,11 +14,16 @@ const LoggedUsers = () => {
         return;
       }
       try {
-        const response = await axios.post("http://localhost:8000/api/loggeduser", {},{
+        const response = await axios.post("http://localhost:8000/api/loggeduser",{},{
           headers: { Authorization: `Bearer ${token}` },
         });
-        if (response.data && response.data.user) {
+        console.log(response.data);  // Add this to inspect the structure
+
+        if ( response.data.user) {
+
           setUsers(response.data.user); // Assuming the API sends an array of users under 'user'
+          setError(` users data received.,${users.length}`);
+
         } else {
           setError("No users data received.");
         }
@@ -35,8 +40,8 @@ const LoggedUsers = () => {
     <div className="container mt-3">
       <h1>Logged Users</h1>
       {error && <div className="alert alert-danger">{error}</div>}
-      {users.length > 0 ? (
-        <table className="striped bordered hover">
+      {users.length >= 0 ? (
+        <table className="table table-striped table-bordered table-hover">
           <thead>
             <tr>
               <th>#</th>
@@ -56,9 +61,9 @@ const LoggedUsers = () => {
             ))}
           </tbody>
         </table>
-      ) : (
-        <p className="text-center text-danger ">No users found.</p>
-      )}
+       ) : (
+        <p className="text-center text-danger ">No users found. {error}</p>
+       )}
     </div>
   );
 };

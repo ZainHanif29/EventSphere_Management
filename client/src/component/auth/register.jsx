@@ -18,7 +18,7 @@ function SignupForm() {
     const endpoint = 'http://localhost:8000/api'; 
 
     try {
-      const response = await axios.post(`${endpoint}/rigester`, {
+      const response = await axios.post(`${endpoint}/regester`, {
         FirstName: formData.firstName,
         LastName: formData.lastName,
         Email: formData.email,

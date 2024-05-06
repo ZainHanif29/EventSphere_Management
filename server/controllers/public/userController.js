@@ -62,7 +62,7 @@ class userControllerPublic {
 
     // Logged User
     static loggedUser = async (req, res) => {
-        res.json({ user: req.user })
+        res.json({status: "success",  user: req.user })
     }
 
     // Change Password
