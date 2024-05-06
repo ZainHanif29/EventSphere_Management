@@ -44,7 +44,6 @@ import ChangePasswordForm from "./component/auth/change-password.jsx";
 import LoggedUsers from "./component/auth/user-logged.jsx";
 import UserTable from "./component/admin/user.jsx";
 import Nav from "./component/dasboard/jsx/navbar.jsx";
-import RegesterUser from "./component/dasboard/jsx/view-user.jsx";
 import ViewUser from "./component/dasboard/jsx/view-user.jsx";
 import ViewEvents from "./component/dasboard/jsx/view-events.jsx";
 import ViewBooth from "./component/dasboard/jsx/view-booth.jsx";
@@ -58,12 +57,12 @@ function App() {
       <Nav />
       <Routes>
       
-        {/* <Route path="/" element={<SignupForm />} />
+         <Route path="/" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/forgot-password" element={<ForgotPasswordForm />} />
         <Route path="/change-password" element={<ChangePasswordForm />} />
-        <Route path="/users" element={<UserTable />} />
-        <Route path="/profile" element={<LoggedUsers />} /> */}
+        <Route path="/users" element={<UserTable />} /> 
+        <Route path="/profile" element={<LoggedUsers />} /> 
         {/* Dasboard */}
         <Route path="/viewusers" element={<ViewUser />} />
         <Route path="/viewevents" element={<ViewEvents />} />
