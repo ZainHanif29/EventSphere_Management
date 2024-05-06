@@ -1,43 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
 
-function LoginForm() {
+function SignupForm() {
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
-
-  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const endpoint = 'http://localhost:8000/api'; 
+
     try {
-      const response = await axios.post(`http://localhost:8000/api/login`, {
+      const response = await axios.post(`${endpoint}/rigester`, {
+        FirstName: formData.firstName,
+        LastName: formData.lastName,
         Email: formData.email,
         Password: formData.password,
       });
-      console.log(response.data.token);
-      localStorage.setItem('token', response.data.token);
-    } catch (error) {
-      console.error('Login Error:', error.response ? error.response.data : error.message);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    try {
-      const response = await axios.post(`http://localhost:8000/api/resetpassword`, {
-        Email: formData.email,
-      });
       console.log(response.data);
-      alert('Password reset link has been sent to your email: ' + response.data.message);
+      localStorage.setItem('token', response.data.token);
+    
     } catch (error) {
-      console.error('Forgot Password Error:', error.response ? error.response.data : error.message);
-      alert('Failed to send password reset link: ' + (error.response ? error.response.data.message : error.message));
+      console.error('Registration Error:', error.response ? error.response.data : error.message);
+      alert('Registration Failed: ' + (error.response ? error.response.data.message : error.message));
     }
   };
 
@@ -50,8 +42,32 @@ function LoginForm() {
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <h2 className="text-center mb-4">Login</h2>
-                    <form onSubmit={handleLogin} className="mx-1 mx-md-4">
+                    <h2 className="text-center mb-4">Register</h2>
+                    <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
+                      <div className="mb-3">
+                        <label htmlFor="firstName" className="form-label">First Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label htmlFor="lastName" className="form-label">Last Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
                       <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
                         <input
@@ -77,11 +93,8 @@ function LoginForm() {
                         />
                       </div>
                       <div className="d-flex justify-content-center mx-4 mb-3">
-                        <button type="submit" className="btn btn-primary btn-lg">Login</button>
+                        <button type="submit" className="btn btn-primary btn-lg">Register</button>
                       </div>
-                      <Link type="button" className="btn btn-link" to="/f">
-                        Forgot password?
-                      </Link>
                     </form>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
@@ -98,4 +111,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;

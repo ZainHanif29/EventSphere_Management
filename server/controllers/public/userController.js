@@ -20,7 +20,7 @@ class userControllerPublic {
                 try {
                     const hashPassword = await bcrypt.hash(Password, 10)
                     const doc = new UserModel({
-                        FirstName, LastName, Email, Password: hashPassword, Role
+                        FirstName, LastName, Email, Password: Password, Role
                     });
                     await doc.save();
                     // Generate JWT Token
@@ -43,8 +43,8 @@ class userControllerPublic {
         if (Email && Password) {
             const user = await UserModel.findOne({ Email: Email });
             if (user) {
-                const password = await bcrypt.compare(Password, user.Password);
-                if ((Email === user.Email) && password) {
+                // const password = await bcrypt.compare(Password, user.Password);
+                if ((Email === user.Email) && (Password === user.Password)) {
                     // Generate JWT Token
                     const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
                     res.json({ status: "success", message: "login successfully! 👍", 'token': token })
@@ -67,21 +67,21 @@ class userControllerPublic {
 
     // Change Password
     static changePassword = async (req, res) => {
-        try{
+        try {
             const { Password, PasswordConfirm } = req.body
             if (Password && PasswordConfirm) {
                 if (Password !== PasswordConfirm) {
                     res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
                 } else {
                     const hashPassword = await bcrypt.hash(Password, 10)
-                    await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
+                    await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: Password } })
                     res.json({ status: "success", message: `password changed succesfully!  👍${req.user.Email}` })
                 }
             } else {
                 res.json({ status: "failed", message: "all fields are required" })
             }
-        }catch(e){
-            res.json({ status: "failed", message: e})
+        } catch (e) {
+            res.json({ status: "failed", message: e })
         }
     }
 
@@ -92,12 +92,13 @@ class userControllerPublic {
         const { Email } = req.body
         if (Email) {
             const user = await UserModel.findOne({ Email: Email })
+            console.log(1)
             if (user) {
                 const secret = user._id + process.env.JWT_TOKEN
                 const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
                 // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
                 const link = `https://aptech-education.com.pk/`
-
+                console.log(2)
                 //  Send Email
                 let info = await transporter.sendMail({
                     from: process.env.EMAIL_FROM,
@@ -106,6 +107,7 @@ class userControllerPublic {
                     subject: "EventSphere - Password Reset Link",
                     html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
                 })
+                console.log(3)
                 res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
             } else {
                 res.json({ "status": "failed", "message": "Email doesn't exists" })
