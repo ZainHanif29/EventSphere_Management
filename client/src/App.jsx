@@ -50,6 +50,7 @@ import AnalysisReport from "./component/dasboard/jsx/analysis-report.jsx";
 import Navbar from "./component/attendee/jsx/navbar.jsx";
 import Carousel from "./component/attendee/jsx/carousel.jsx";
 import CardList from "./component/attendee/jsx/card.jsx";
+import Footer from "./component/attendee/jsx/footer.jsx";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
       <Navbar />
       <Carousel />
       <CardList />
+      <Footer />
 
       {/* <Routes>
         <Route path="/" element={<SignupForm />} />

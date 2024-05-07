@@ -1,7 +1,6 @@
 import React from 'react';
 
 function CardList() {
-  // Assuming img variable contains the image source URL
   const img = '/img.jpg';
 
   // Array of card content
