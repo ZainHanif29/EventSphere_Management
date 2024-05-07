@@ -8,7 +8,6 @@ function LoginForm() {
     password: '',
   });
 
-  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,18 +27,7 @@ function LoginForm() {
     }
   };
 
-  const handleForgotPassword = async () => {
-    try {
-      const response = await axios.post(`http://localhost:8000/api/resetpassword`, {
-        Email: formData.email,
-      });
-      console.log(response.data);
-      alert('Password reset link has been sent to your email: ' + response.data.message);
-    } catch (error) {
-      console.error('Forgot Password Error:', error.response ? error.response.data : error.message);
-      alert('Failed to send password reset link: ' + (error.response ? error.response.data.message : error.message));
-    }
-  };
+
 
   return (
     <section className="vh-100" style={{ backgroundColor: '#eee' }}>
@@ -79,7 +67,7 @@ function LoginForm() {
                       <div className="d-flex justify-content-center mx-4 mb-3">
                         <button type="submit" className="btn btn-primary btn-lg">Login</button>
                       </div>
-                      <Link type="button" className="btn btn-link" to="/f">
+                      <Link type="button" className="btn btn-link" to="/forgot-password">
                         Forgot password?
                       </Link>
                     </form>

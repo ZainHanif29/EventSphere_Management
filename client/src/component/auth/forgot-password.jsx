@@ -29,12 +29,12 @@ function ForgotPasswordForm() {
     <section className="vh-100" style={{ backgroundColor: '#eee' }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-md-8 col-lg-6 col-xl-4">
-            <div className="card text-black" style={{ borderRadius: '25px' }}>
+          <div className="col-md-8 col-lg-6 col-xl-4 ">
+            <div className="card  text-black" style={{ borderRadius: '25px' }}>
               <div className="card-body p-md-5">
                 <h2 className="text-center mb-4">Forgot Password</h2>
                 <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
+                  <div className="container row col-8 mb-3">
                     <label htmlFor="email" className="form-label">Email Address</label>
                     <input
                       type="email"
