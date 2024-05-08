@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/table.css";
+import Nav from "./navbar";
 function ViewBooth() {
   const [data, setdata] = useState([]);
   const [error, setError] = useState("");
@@ -39,6 +40,8 @@ function ViewBooth() {
   }, []);
 
   return (
+  <>
+  <Nav />
     <div
       style={{
         width: "100vw",
@@ -79,6 +82,7 @@ function ViewBooth() {
     </div>
       </div>
     </div>
+  </>
   );
 }
 

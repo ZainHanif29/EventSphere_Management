@@ -4,7 +4,10 @@ import express from 'express'
 import checkUserAuth from '../middlewares/auth-middlewares.js'
 
 // Controller
+// Public
 import userControllerPublic from '../controllers/public/userController.js'
+import eventControllerPublic from '../controllers/public/eventController.js'
+// Admin
 import eventController from '../controllers/admin/eventController.js'
 import boothController from '../controllers/admin/boothController.js'
 import userControllerAdmin from '../controllers/admin/userController.js'
@@ -32,10 +35,9 @@ router.post('/addBooth', checkUserAuth, boothController.addBooth)
 router.get('/getBooth', checkUserAuth, boothController.getBooth)
 router.get('/getuser', checkUserAuth, userControllerAdmin.getUser)
 
-// exhibitor Routes
 
 // attendee Routes
-router.get('/getEventsClient', eventController.getEventsClient)
+router.get('/getEventsClient', eventControllerPublic.getEventsClient)
 
 
 

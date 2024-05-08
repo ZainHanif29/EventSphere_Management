@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
+import Nav from "./navbar";
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
@@ -48,6 +49,8 @@ function CreateEvent() {
   };
 
   return (
+ <>
+ <Nav />
     <div
       style={{
         width: "100vw",
@@ -106,6 +109,7 @@ function CreateEvent() {
         </form>
       </div>
     </div>
+ </>
   );
 }
 

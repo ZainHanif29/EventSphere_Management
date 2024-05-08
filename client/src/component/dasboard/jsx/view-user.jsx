@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/table.css";
+import Nav from "./navbar";
 function ViewUser() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
@@ -33,6 +34,8 @@ function ViewUser() {
   }, []);
 
   return (
+   <>
+   <Nav />
     <div
       style={{
         width: "100vw",
@@ -74,6 +77,7 @@ function ViewUser() {
     </div>
       </div>
     </div>
+   </>
   );
 }
 

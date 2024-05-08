@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/table.css";
+import Nav from "./navbar";
 function ViewEvents() {
   const [data, setdata] = useState([]);
   const [error, setError] = useState("");
@@ -42,6 +43,7 @@ function ViewEvents() {
 
   return (
    <>
+   <Nav />
     <div
       style={{
         width: "100vw",

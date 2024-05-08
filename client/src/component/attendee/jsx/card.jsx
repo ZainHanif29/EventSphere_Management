@@ -1,6 +1,25 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 function CardList() {
+  // const [data, setData] = useState([]);
+  const [status, setStatus] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/getEventsClient");
+        console.log(response.data.message)
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setError("Failed to fetch users due to an error.");
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+
   const img = '/img.jpg';
 
   // Array of card content

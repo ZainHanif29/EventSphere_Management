@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
-
+const year = new Date().getFullYear();
   return (
     <div className="container-fuild mt-1">
       <footer className="text-white text-center text-lg-start bg-dark">
@@ -89,7 +89,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          © 2024 Copyright &nbsp;
+          © {year} Copyright &nbsp;
           <span className="text-white">EventSphere Management</span>
         </div>
         {/* Copyright */}
