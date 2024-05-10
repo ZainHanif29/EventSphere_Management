@@ -32,7 +32,7 @@ function Nav() {
        <Link type="button" className="listitems" id='link' to="/createevent">
          CREATE EVENTS
        </Link>
-       <Link type="button" className="listitems" id='link' to="/">
+       <Link type="button" className="listitems" id='link' to="/analysis">
        ANALYSIS REPORT
        </Link>
          </ul>

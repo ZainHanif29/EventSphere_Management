@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 const connectDB = async(dbURL,dbName)=>{
     try{
         await mongoose.connect(`${dbURL}/${dbName}`)
-        console.log("'Successful' DB Connected !  👍")
+        console.log("Database connected successfully 👍");
     }catch(e){
-        console.log("'Un Successful' DB not Connected !  👎")
+        console.error("Failed to connect to database 👎", error);
+        process.exit(1); 
     }
 }
 

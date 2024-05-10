@@ -1,0 +1,73 @@
+[
+    {
+      "title": "Spring Book Fair",
+      "location": "Karachi",
+      "theme": "Book Fair",
+      "description": "A delightful gathering for book lovers with thousands of titles in various genres.",
+      "date": "2024-04-05T00:00:00.000Z"
+    },
+    {
+      "title": "Tech Innovations Expo",
+      "location": "Islamabad",
+      "theme": "Expo",
+      "description": "Explore the latest in technology and innovation at this premier expo.",
+      "date": "2024-04-11T00:00:00.000Z"
+    },
+    {
+      "title": "Annual Trade Extravaganza",
+      "location": "Lahore",
+      "theme": "Big Trade show",
+      "description": "Networking and opportunities abound at the largest trade show of the year.",
+      "date": "2024-04-20T00:00:00.000Z"
+    },
+    {
+      "title": "Literature Fest",
+      "location": "Karachi",
+      "theme": "Book Fair",
+      "description": "Immerse yourself in literature with panels, signings, and more.",
+      "date": "2024-04-15T00:00:00.000Z"
+    },
+    {
+      "title": "Global Business Expo",
+      "location": "Islamabad",
+      "theme": "Expo",
+      "description": "An international platform for businesses to showcase and network.",
+      "date": "2024-04-25T00:00:00.000Z"
+    },
+    {
+      "title": "Citywide Book Bazaar",
+      "location": "Lahore",
+      "theme": "Book Fair",
+      "description": "Find rare and out-of-print books at unbeatable prices.",
+      "date": "2024-04-07T00:00:00.000Z"
+    },
+    {
+      "title": "Industrial Trade Show",
+      "location": "Karachi",
+      "theme": "Big Trade show",
+      "description": "Showcasing the future of industrial technology and services.",
+      "date": "2024-04-18T00:00:00.000Z"
+    },
+    {
+      "title": "Innovators Expo",
+      "location": "Islamabad",
+      "theme": "Expo",
+      "description": "Meet the brightest minds and see groundbreaking products in action.",
+      "date": "2024-04-22T00:00:00.000Z"
+    },
+    {
+      "title": "National Book Day Fair",
+      "location": "Lahore",
+      "theme": "Book Fair",
+      "description": "Celebrating national book day with authors and readers alike.",
+      "date": "2024-04-12T00:00:00.000Z"
+    },
+    {
+      "title": "2024 Commerce Expo",
+      "location": "Karachi",
+      "theme": "Expo",
+      "description": "A cornerstone event for leaders and innovators in the business world.",
+      "date": "2024-04-29T00:00:00.000Z"
+    }
+  ]
+  

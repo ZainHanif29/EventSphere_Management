@@ -13,7 +13,7 @@ const LoggedUsers = () => {
       }
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/loggeduser",
+          "http://localhost:8000/api/logged-user",
           {},
           {
             headers: { Authorization: `Bearer ${token}` },

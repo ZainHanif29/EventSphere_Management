@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 function CardList() {
-  // const [data, setData] = useState([]);
-  const [status, setStatus] = useState([]);
+  const [events, setEvents] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchEvents = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/getEventsClient");
-        console.log(response.data.message)
+        setEvents(response.data.message);
       } catch (error) {
-        console.error("Error fetching users:", error);
-        setError("Failed to fetch users due to an error.");
+        console.error("Error fetching events:", error);
+        setError("Failed to fetch events due to an error.");
       }
     };
 
-    fetchUsers();
+    fetchEvents();
   }, []);
 
-
-  const img = '/img.jpg';
-
-  // Array of card content
-  const cardContent = Array.from({ length: 20 }, (_, index) => (
-    <div key={index} className="col-md-4 mb-3"> {/* Using Bootstrap's grid system */}
+  const Events = events.map((event, index) => (
+    <div key={index} className="col-md-4 mb-3">
       <div className="card">
-        <img src={img} className="card-img-top" alt="..." />
         <div className="card-body">
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 className="card-title">{event.title}</h5>
+          <p className="card-text">Location: {event.location}</p>
+          <p className="card-text">Theme: {event.theme}</p>
+          <p className="card-text">Description: {event.description}</p>
+          <p className="card-text">Date: {new Date(event.date).toLocaleDateString()}</p>
         </div>
       </div>
     </div>
@@ -36,9 +35,9 @@ function CardList() {
 
   return (
     <div className="container">
-        <div className="row">
-      {cardContent}
-    </div>
+      <div className="row">
+        {Events}
+      </div>
     </div>
   );
 }

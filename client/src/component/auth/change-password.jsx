@@ -31,7 +31,7 @@ function ChangePasswordForm() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/changepassword', {
+      const response = await axios.post('http://localhost:8000/api/change-password', {
         Password: formData.newPassword,
         PasswordConfirm: formData.confirmPassword,
       }, {

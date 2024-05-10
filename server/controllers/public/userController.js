@@ -20,7 +20,7 @@ class userControllerPublic {
                 try {
                     const hashPassword = await bcrypt.hash(Password, 10)
                     const doc = new UserModel({
-                        FirstName, LastName, Email, Password: Password, Role
+                        FirstName, LastName, Email, Password: hashPassword, Role
                     });
                     await doc.save();
                     // Generate JWT Token
@@ -43,8 +43,8 @@ class userControllerPublic {
         if (Email && Password) {
             const user = await UserModel.findOne({ Email: Email });
             if (user) {
-                // const password = await bcrypt.compare(Password, user.Password);
-                if ((Email === user.Email) && (Password === user.Password)) {
+                const password = await bcrypt.compare(Password, user.Password);
+                if ((Email === user.Email) && password) {
                     // Generate JWT Token
                     const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
                     res.json({ status: "success", message: "login successfully! 👍", 'token': token })
@@ -74,7 +74,7 @@ class userControllerPublic {
                     res.json({ status: "failed", message: "password and confirm password doesn't match!  😢" })
                 } else {
                     const hashPassword = await bcrypt.hash(Password, 10)
-                    await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: Password } })
+                    await UserModel.findByIdAndUpdate(req.user._id, { $set: { Password: hashPassword } })
                     res.json({ status: "success", message: `password changed succesfully!  👍${req.user.Email}` })
                 }
             } else {

@@ -15,7 +15,7 @@ function ViewEvents() {
       }
 
       try {
-        const response = await axios.get("http://localhost:8000/api/getevent", {
+        const response = await axios.get("http://localhost:8000/api/events", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

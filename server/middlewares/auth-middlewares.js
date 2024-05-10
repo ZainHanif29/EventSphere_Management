@@ -5,7 +5,9 @@ const checkUserAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
     if (!authorization || !authorization.startsWith('Bearer')) {
-      throw new Error('Unauthorized User, No Token');
+      // throw new Error('Unauthorized User, No Token');
+     return res.json({ status: "failed", message:"user not found" });
+    //  exit();
     }
 
     const token = authorization.split(' ')[1];
@@ -13,7 +15,7 @@ const checkUserAuth = async (req, res, next) => {
     req.user = await UserModel.findById(userID).select('-Password');
     next();
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.json({ status: "failed", message: error.message });
   }
 };

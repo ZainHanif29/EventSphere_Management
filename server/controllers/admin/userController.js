@@ -17,6 +17,21 @@ class userControllerAdmin {
             return res.json({ status: "success", message: user });
         }
     }
+
+        // Delete User
+        static deleteUser = async (req, res) => {
+            try {
+                const _id = req.params.userId;
+                console.log(_id)
+                const user = await UserModel.findByIdAndDelete(_id);
+                if (!user) {
+                    return res.status(404).json({ status: "failed", message: "User not found! 😊" });
+                }
+                res.json({ status: "success", message: "user deleted successfully!  👍" });
+            } catch (e) {
+                res.status(500).json({ status: "failed", message: `Error deleting user: ${e.message} 👎` });
+            }
+        }
 }
 
 export default userControllerAdmin;

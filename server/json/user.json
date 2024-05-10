@@ -1,0 +1,73 @@
+[
+    {
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Email": "john.doe@example.com",
+      "Password": "password123",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Jane",
+      "LastName": "Smith",
+      "Email": "jane.smith@example.com",
+      "Password": "securePass456",
+      "Role": "organizer"
+    },
+    {
+      "FirstName": "Alice",
+      "LastName": "Johnson",
+      "Email": "alice.johnson@example.com",
+      "Password": "alice2024",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Bob",
+      "LastName": "Brown",
+      "Email": "bob.brown@example.com",
+      "Password": "bobbrown321",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Charlie",
+      "LastName": "Davis",
+      "Email": "charlie.davis@example.com",
+      "Password": "charlieD99",
+      "Role": "organizer"
+    },
+    {
+      "FirstName": "Diana",
+      "LastName": "Evans",
+      "Email": "diana.evans@example.com",
+      "Password": "dianapass111",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Evan",
+      "LastName": "Garcia",
+      "Email": "evan.garcia@example.com",
+      "Password": "evanGsecure",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Fiona",
+      "LastName": "Harris",
+      "Email": "fiona.harris@example.com",
+      "Password": "fionaH123",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "George",
+      "LastName": "Ivanov",
+      "Email": "george.ivanov@example.com",
+      "Password": "george789",
+      "Role": "attendee"
+    },
+    {
+      "FirstName": "Hannah",
+      "LastName": "Jones",
+      "Email": "hannah.jones@example.com",
+      "Password": "hannahJ456",
+      "Role": "attendee"
+    }
+  ]
+  

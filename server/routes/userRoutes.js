@@ -18,22 +18,24 @@ const router = express.Router();
 
 
 // User Rigester Routes
-router.post('/regester', userControllerPublic.userRigester)
+router.post('/register', userControllerPublic.userRigester)
 router.post('/login', userControllerPublic.userLogin)
-router.post('/loggeduser', checkUserAuth, userControllerPublic.loggedUser)
-router.post('/changepassword',checkUserAuth ,userControllerPublic.changePassword)
-router.post('/restpassword' ,userControllerPublic.sendUserEmailResetPassword)
+router.post('/logged-user', checkUserAuth, userControllerPublic.loggedUser)
+router.post('/change-password',checkUserAuth ,userControllerPublic.changePassword)
+router.post('/reset-password' ,userControllerPublic.sendUserEmailResetPassword)
 
 // Event Routes for [organizer or exhibitor]
-router.post('/addEvent', checkUserAuth, eventController.addEvent)
-router.get('/getevent', checkUserAuth, eventController.getEvents)
-router.delete('/deleteEvent/:eventId', checkUserAuth, eventController.deleteEvent)
-router.put('/updateEvent/:eventId', checkUserAuth, eventController.updateEvent)
+router.post('/events', checkUserAuth, eventController.addEvent)
+router.get('/events', checkUserAuth, eventController.getEvents)
+router.delete('/events/:eventId', checkUserAuth, eventController.deleteEvent)
+router.put('/events/:eventId', checkUserAuth, eventController.updateEvent)
 
 // organizer Routes
 router.post('/addBooth', checkUserAuth, boothController.addBooth)
 router.get('/getBooth', checkUserAuth, boothController.getBooth)
-router.get('/getuser', checkUserAuth, userControllerAdmin.getUser)
+
+router.get('/user', checkUserAuth, userControllerAdmin.getUser)
+router.delete('/user/:userId', checkUserAuth, userControllerAdmin.deleteUser)
 
 
 // attendee Routes
