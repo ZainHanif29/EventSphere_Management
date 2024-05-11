@@ -44,6 +44,7 @@ const RoutesFun = () => {
       <Routes>
         <Route path="/" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
+        {res == "success" &&  <Route path="/home" element={<HomePage />} />};
         {res == "success" ? role === "organizer" && DashboardRoutes() : <></>};
         {res == "success" ? role === "attendee" && AttendeeRoutes() : <></>};
       </Routes>

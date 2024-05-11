@@ -3,7 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+
 function SignupForm() {
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,6 +32,7 @@ function SignupForm() {
         console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
         toast.success(response.data.message);
+
       } else if (response.data.status == "failed") {
         toast.error(response.data.message);
       } else {
