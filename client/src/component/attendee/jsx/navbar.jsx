@@ -32,9 +32,12 @@ function Navbar() {
               </Link>
             </li>
           </ul> */}
-          <button className="btn btn-outline-danger" onClick={handleLogout}>
+          <Link className="btn btn-outline-danger" onClick={handleLogout}>
             Logout
-          </button>
+          </Link>
+          <Link className="btn btn-outline-info" to="/viewusers">
+            Dasboard
+          </Link>
         </div>
       </div>
     </nav>

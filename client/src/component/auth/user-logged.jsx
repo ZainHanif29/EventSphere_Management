@@ -12,8 +12,9 @@ const LoggedUsers = () => {
         return;
       }
       try {
+        const endpoint = 'http://localhost:8000/api'; 
         const response = await axios.post(
-          "http://localhost:8000/api/logged-user",
+          `${endpoint}/logged-user`,
           {},
           {
             headers: { Authorization: `Bearer ${token}` },

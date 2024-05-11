@@ -8,7 +8,9 @@ function CardList() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/getEventsClient");
+        const endpoint = "http://localhost:8000/api";
+
+        const response = await axios.get(`${endpoint}/getEventsClient`);
         setEvents(response.data.message);
       } catch (error) {
         console.error("Error fetching events:", error);

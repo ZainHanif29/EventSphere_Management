@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
-import Nav from "./navbar";
+import Nav from "./navbar.jsx";
+import "../css/table.css";
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ function CreateEvent() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/addEvent",
+        "http://localhost:8000/api/events",
         {
           title: formData.title,
           location: formData.location,

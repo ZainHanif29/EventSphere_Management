@@ -46,4 +46,13 @@ form{
         padding: 2% !important;
         box-sizing: border-box !important;
     }
+    .textarea{
+        width: 100% !important;
+        margin-bottom: 3em !important;
+        height: 5em !important;
+        border-radius: 10px !important;
+        border: none !important;
+        padding: 3% !important;
+        box-sizing: border-box !important;
+    }
     

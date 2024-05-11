@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,33 +15,44 @@ function LoginForm() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const endpoint = "http://localhost:8000/api";
     try {
-      const response = await axios.post(`http://localhost:8000/api/login`, {
+      const response = await axios.post(`${endpoint}/login`, {
         Email: formData.email,
         Password: formData.password,
       });
-      console.log(response.data.token);
-      localStorage.setItem('token', response.data.token);
+      if (response.data.status == "success") {
+        console.log(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        toast.success(response.data.message);
+      } else if (response.data.status == "failed") {
+        toast.error(response.data.message);
+      } else {
+        console.log("api not hit");
+      }
     } catch (error) {
-      console.error('Login Error:', error.response ? error.response.data : error.message);
+      console.error(
+        "Login Error:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
-
-
   return (
-    <section className="vh-100" style={{ backgroundColor: '#eee' }}>
+    <section className="vh-100" style={{ backgroundColor: "#eee" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
-            <div className="card text-black" style={{ borderRadius: '25px' }}>
+            <div className="card text-black" style={{ borderRadius: "25px" }}>
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                     <h2 className="text-center mb-4">Login</h2>
                     <form onSubmit={handleLogin} className="mx-1 mx-md-4">
                       <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
+                        <label htmlFor="email" className="form-label">
+                          Email
+                        </label>
                         <input
                           type="email"
                           className="form-control"
@@ -53,7 +64,9 @@ function LoginForm() {
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">
+                          Password
+                        </label>
                         <input
                           type="password"
                           className="form-control"
@@ -65,16 +78,25 @@ function LoginForm() {
                         />
                       </div>
                       <div className="d-flex justify-content-center mx-4 mb-3">
-                        <button type="submit" className="btn btn-primary btn-lg">Login</button>
+                        <button
+                          type="submit"
+                          className="btn btn-primary btn-lg"
+                        >
+                          Login
+                        </button>
                       </div>
-                      <Link type="button" className="btn btn-link" to="/forgot-password">
-                        Forgot password?
-                      </Link>
                     </form>
+                    <div className="text-center mb-3">
+                      <span>Register</span> &nbsp;
+                      <Link to="/">Rigester</Link>
+                    </div>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                      className="img-fluid" alt="Sample image" />
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      className="img-fluid"
+                      alt="Sample image"
+                    />
                   </div>
                 </div>
               </div>

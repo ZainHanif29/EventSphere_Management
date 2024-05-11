@@ -5,12 +5,12 @@ import transporter from "../../config/mail.js";
 import dotenv from 'dotenv'
 dotenv.config()
 
-class userControllerPublic {
+class UserControllerPublic {
 
 
 
     // Rigester Controller
-    static userRigester = async (req, res) => {
+    static userRegister = async (req, res) => {
         const { FirstName, LastName, Email, Password, Role } = req.body;
         if (FirstName && LastName && Email && Password) {
             const user = await UserModel.findOne({ Email: Email });
@@ -25,9 +25,7 @@ class userControllerPublic {
                     await doc.save();
                     // Generate JWT Token
                     const token = jwt.sign({ userID: doc._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
-
                     res.json({ status: 'success', message: "user rigester!  👍", 'token': token })
-
                 } catch (error) {
                     res.json({ status: 'failed', message: `user not rigester!  👎  ${error}` })
                 }
@@ -62,7 +60,7 @@ class userControllerPublic {
 
     // Logged User
     static loggedUser = async (req, res) => {
-        res.json({status: "success",  user: req.user })
+        res.json({ status: "success", user: req.user })
     }
 
     // Change Password
@@ -119,6 +117,6 @@ class userControllerPublic {
 
 }
 
-export default userControllerPublic;
+export default UserControllerPublic;
 
 

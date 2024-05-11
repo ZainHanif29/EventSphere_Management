@@ -16,28 +16,29 @@ function useUserData() {
         return;
       }
       try {
+        const endpoint = 'http://localhost:8000/api';
+
         const response = await axios.post(
-          "http://localhost:8000/api/logged-user",
+          `${endpoint}/logged-user`,
           {},
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         setRes(response.data.status);
-        setName(`${response.data.user.FirstName} \t\t ${response.data.user.LastName}`);
+        setName(`${response.data.user.FirstName} ${response.data.user.LastName}`);
         setEmail(response.data.user.Email);
         setRole(response.data.user.Role);
         setError(null);
       } catch (error) {
         setError("Failed to fetch user data.");
-        // console.error("Failed to fetch user data:", error);
       }
     };
 
     fetchUserData();
   }, []);
 
-  return { name, email, role, error ,res};
+  return { name, email, role, error, res };
 }
 
 export default useUserData;
