@@ -7,7 +7,6 @@ const AboutUs = () => {
   return (
     <>
       <Navbar />
-   <Carousel />
 
       <div className="container mt-5">
         <div className="row">
@@ -50,7 +49,6 @@ const AboutUs = () => {
               ensuring that our solutions are aligned with their goals and
               objectives.
             </p>
-            <button className="btn btn-primary">Join Us</button>
           </div>
         </div>
       </div>

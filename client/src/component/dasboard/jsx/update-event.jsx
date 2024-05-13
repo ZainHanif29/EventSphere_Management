@@ -111,6 +111,7 @@ function UpdateEvent() {
                   </select>
                   <input
                       type="date"
+                      
                       className="expoinput "
                       placeholder="Event Date"
                       name="date"

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserData from "../../../hooks/user";
 
 function Navbar() {
+  const navigate = useNavigate();
   const { name, email, role, error, res } = useUserData();
   useEffect(() => {
     try {
@@ -11,10 +12,16 @@ function Navbar() {
       console.log(e);
     }
   }, [name, email, role, error, res]);
+  
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/")
+
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/home">
           EventSphere_Management
         </Link>
         <button
@@ -31,7 +38,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" aria-current="page" to="/home">
                 Home
               </Link>
             </li>
@@ -40,11 +47,7 @@ function Navbar() {
                 About us
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-              Contact us
-              </Link>
-            </li>
+       
           </ul>
           {res == "success" ? (
             role == "organizer" && (
@@ -56,7 +59,6 @@ function Navbar() {
             )
           ) : (
             <>
-              <h1 className="btn btn-danger ">check</h1>
             </>
           )}
 
@@ -65,22 +67,13 @@ function Navbar() {
               Logout
             </Link>
           ) : (
-            <Link
-              className="btn btn-outline-success"
-              onClick={handleLogout}
-              to="login"
-            >
-              Login
-            </Link>
+        <></>
           )}
         </div>
       </div>
     </nav>
   );
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-  }
 }
 
 export default Navbar;

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,10 +25,19 @@ function LoginForm() {
       if (response.data.status == "success") {
         console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
-        toast.success(response.data.message);
-      } else if (response.data.status == "failed") {
+        // toast.success(response.data.message);
+        if(response.data.role == "attendee"){
+          navigate("/home")
+        }else if(response.data.role == "organizer"){
+          navigate("/dashboard")
+        }else{
+          console.log("error")
+        }
+      } 
+      else if (response.data.status == "failed") {
         toast.error(response.data.message);
-      } else {
+      } 
+      else {
         console.log("api not hit");
       }
     } catch (error) {
@@ -87,7 +97,7 @@ function LoginForm() {
                       </div>
                     </form>
                     <div className="text-center mb-3">
-                      <span>Register</span> &nbsp;
+                      <span>Don't have an account?</span> &nbsp;
                       <Link to="/">Rigester</Link>
                     </div>
                   </div>

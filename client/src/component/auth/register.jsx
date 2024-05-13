@@ -127,7 +127,7 @@ function SignupForm() {
                       </div>
                     </form>
                     <div className="text-center mb-3">
-                      <span>Already Register</span> &nbsp;
+                      <span>Already Register?</span> &nbsp;
                       <Link to="login">Login</Link>
                     </div>
                   </div>

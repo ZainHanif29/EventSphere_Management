@@ -45,7 +45,7 @@ class UserControllerPublic {
                 if ((Email === user.Email) && password) {
                     // Generate JWT Token
                     const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
-                    res.json({ status: "success", message: "login successfully! 👍", 'token': token })
+                    res.json({ status: "success", message: "login successfully! 👍", 'token': token , 'role': user.Role})
                 } else {
                     res.json({ status: "failed", message: "email or password is not valid!  😢" })
                 }
