@@ -76,7 +76,7 @@ function ViewUser() {
       >
         <div id="formarea2" style={{ width: "100%" }}>
           <div className="container mt-3">
-            <h2 className="mb-4">User List</h2>
+            <h2 className="mb-4 text-center ">User List</h2>
             {error && <div className="alert alert-danger">{error}</div>}
             {users.length > 0 ? (
               <table className="table table-striped">

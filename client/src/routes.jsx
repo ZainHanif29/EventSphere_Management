@@ -12,6 +12,8 @@ import CreateEvent from "./component/dasboard/jsx/create-event.jsx";
 import AnalysisReport from "./component/dasboard/jsx/analysis-report.jsx";
 import useUserData from "./hooks/user.js";
 import UpdateEvent from "./component/dasboard/jsx/update-event.jsx";
+import AboutUs from "./component/attendee/pages/about.jsx";
+import Contact from "./component/attendee/pages/contact.jsx";
 
 const RoutesFun = () => {
   const { name, email, role, error, res } = useUserData();
@@ -27,6 +29,9 @@ const RoutesFun = () => {
   const AttendeeRoutes = () => (
     <>
       <Route path="/home" element={<HomePage />} />
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/contact" element={<Contact />} />
+
     </>
   );
   const DashboardRoutes = () => (
