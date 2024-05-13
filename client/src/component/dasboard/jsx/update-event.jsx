@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Nav from "./navbar.jsx";
 import '../css/table.css'
+import { toast } from "react-toastify";
+
 
 function UpdateEvent() {
     const { eventId } = useParams();
@@ -19,7 +21,7 @@ function UpdateEvent() {
             try {
                 const token = localStorage.getItem("token");
                 if (!token) {
-                    console.log("No authorization token found.");
+                    toast.error("No authorization token found.")
                     return;
                 }
 
@@ -28,7 +30,6 @@ function UpdateEvent() {
                 });
 
                 const eventData = response.data.message;
-                console.log(eventData.date)
                 setFormData({
                     title: eventData.title,
                     location: eventData.location,
@@ -37,7 +38,7 @@ function UpdateEvent() {
                     date: eventData.date,
                 });
             } catch (error) {
-                console.error("Error fetching event details:", error);
+                toast.error("Error fetching event details:", error)
             }
         };
 
@@ -61,12 +62,11 @@ function UpdateEvent() {
           const res =  await axios.put(`http://localhost:8000/api/events/${eventId}`, formData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log(res)
 
-            // Optionally, you can display a success message or redirect the user after updating the event
+            toast.success(res.data.message)
+
         } catch (error) {
             console.error("Error updating event:", error);
-            // Handle error, display error message, or perform other actions as needed
         }
     };
 
@@ -92,14 +92,6 @@ function UpdateEvent() {
                       value={formData.title}
                       onChange={handleChange}
                   />
-                  {/* <input
-                      type="text"
-                      className="expoinput "
-                      placeholder="Location"
-                      name="location"
-                      value={formData.location}
-                      onChange={handleChange}
-                  /> */}
                   <select
                       className="expoinput "
                       name="location"

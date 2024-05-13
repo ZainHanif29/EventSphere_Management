@@ -22,7 +22,6 @@ class userControllerAdmin {
         static deleteUser = async (req, res) => {
             try {
                 const _id = req.params.userId;
-                console.log(_id)
                 const user = await UserModel.findByIdAndDelete(_id);
                 if (!user) {
                     return res.status(404).json({ status: "failed", message: "User not found! 😊" });

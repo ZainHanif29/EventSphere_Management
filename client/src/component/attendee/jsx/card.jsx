@@ -35,8 +35,8 @@ function CardList() {
   //   </div>
   // ));
   const Events = events.map((event, index) => (
-    <div className="col-md-4 mb-3" key={index}>
-<div className="card text-center" >
+    <div className="col-md-4 mb-3"  key={index}>
+<div className="card text-center" style={{height:"300px"}}>
   <div className="card-header">{event.theme}</div>
   <div className="card-body">
     <h5 className="card-title">{event.title}</h5>

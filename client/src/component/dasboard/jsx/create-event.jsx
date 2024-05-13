@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
 import Nav from "./navbar.jsx";
 import "../css/table.css";
+import { toast } from "react-toastify";
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
@@ -40,12 +41,10 @@ function CreateEvent() {
             Authorization: `Bearer ${token}`,
           },
         }
-      ); // Assuming your backend API endpoint is '/api/events/add'
-      console.log(response.data); // Logging the response for testing
-      // Optionally, you can display a success message or redirect the user after successfully adding the event
+      ); 
+      toast.success(response.data.message);
     } catch (error) {
       console.error("Error adding event:", error);
-      // Handle error, display error message, or perform other actions as needed
     }
   };
 

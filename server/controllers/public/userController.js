@@ -90,13 +90,11 @@ class UserControllerPublic {
         const { Email } = req.body
         if (Email) {
             const user = await UserModel.findOne({ Email: Email })
-            console.log(1)
             if (user) {
                 const secret = user._id + process.env.JWT_TOKEN
                 const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
                 // const link = `http://127.0.0.1:3000/api/reset/${user._id}/${token}`
                 const link = `https://aptech-education.com.pk/`
-                console.log(2)
                 //  Send Email
                 let info = await transporter.sendMail({
                     from: process.env.EMAIL_FROM,
@@ -105,7 +103,6 @@ class UserControllerPublic {
                     subject: "EventSphere - Password Reset Link",
                     html: `<center><a href="${link}" style="background-color: blue; color: white; padding: 100px 100px  100px 100px; text-decoration: none; border-radius: 20%;"><span>Reset Password</span></a></center>`
                 })
-                console.log(3)
                 res.json({ "status": "success", "message": "Password Reset Email Sent... Please Check Your Email" })
             } else {
                 res.json({ "status": "failed", "message": "Email doesn't exists" })

@@ -38,7 +38,6 @@ const RoutesFun = () => {
   );
   const auth = () => (
     <>
-      <Route path="/" element={<SignupForm />} />
       <Route path="/login" element={<LoginForm />} />
     </>
   );
@@ -46,10 +45,12 @@ const RoutesFun = () => {
   return (
     <>
       <Routes>
-        {res !== "success" && auth()}
+      <Route path="/" element={<SignupForm />} />
+      <Route path="/login" element={<LoginForm />} />
+
+        {/* {res !== "success" && auth()} */}
         {res === "success" && role === "organizer" && DashboardRoutes()}
         {res === "success" && role === "attendee" && AttendeeRoutes()}
-        <Route path="*" element={<LoginForm />} />
       </Routes>
     </>
   );

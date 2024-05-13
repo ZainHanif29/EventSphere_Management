@@ -54,7 +54,7 @@ function Navbar() {
               <>
                 <Link className="btn btn-outline-primary" to="/viewusers">
                   Dasboard
-                </Link>
+                </Link> &emsp;
               </>
             )
           ) : (

@@ -73,7 +73,8 @@ function ViewEvents() {
                                 <th>Location</th>
                                 <th>Date</th>
                                 <th>Description</th>
-                                <th>Actions</th>
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,11 +84,13 @@ function ViewEvents() {
                                     <td>{event.title}</td>
                                     <td>{event.theme}</td>
                                     <td>{event.location}</td>
-                                    <td>{event.date}</td>
+                                    <td>{new Date(event.date).toLocaleDateString()}</td>
                                     <td>{event.description}</td>
                                     <td>
                                         <Link to={`/update/${event._id}`} className="btn btn-outline-primary mr-2">Update</Link>
-                                        <button className="btn btn-outline-danger" onClick={() => deleteUser(event._id)}>Delete</button>
+                                    </td>
+                                    <td>
+                                    <button className="btn btn-outline-danger" onClick={() => deleteUser(event._id)}>Delete</button>
                                     </td>
                                 </tr>
                             ))}

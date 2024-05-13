@@ -16,7 +16,7 @@ app.use(express.json())
 const port = process.env.PORT
 const dbURL = process.env.DATABASE_URI
 const dbName = process.env.DATABASE_NAME
-connectDB(dbURL,dbName)
+connectDB(dbURL)
 
 
 app.use('/api',Route)

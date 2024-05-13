@@ -49,7 +49,6 @@ class eventController {
             }
             res.json({ status: "success", message: event });
         } catch (error) {
-            console.error("Error fetching event details:", error);
             res.status(500).json({ status: "failed", message: "Failed to fetch event details" });
         }
     }
@@ -66,7 +65,6 @@ class eventController {
             res.json({ status: "success", message: "Event updated successfully", data: updatedEvent });
 
         } catch (error) {
-            console.log("failed")
             res.status(500).json({ status: "failed", message: `Error updating event: ${error.message} 👎` });
         }
     }
