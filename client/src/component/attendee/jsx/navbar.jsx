@@ -15,8 +15,8 @@ function Navbar() {
   
   function handleLogout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     navigate("/")
-
   }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">

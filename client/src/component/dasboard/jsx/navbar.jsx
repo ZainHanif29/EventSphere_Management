@@ -25,6 +25,12 @@ function Nav() {
 
         <nav className="navarea">
           <ul className="listcontiner">
+            <Link type="button" className="listitems" id="link" to="/home">
+              Home Page
+            </Link>
+            <Link type="button" className="listitems" id="link" to="/about">
+              About Page
+            </Link>
             <Link type="button" className="listitems" id="link" to="/viewusers">
               VIEW USER
             </Link>
@@ -43,9 +49,6 @@ function Nav() {
               to="/createevent"
             >
               CREATE EVENTS
-            </Link>
-            <Link type="button" className="listitems" id="link" to="/analysis">
-              ANALYSIS REPORT
             </Link>
           </ul>
         </nav>

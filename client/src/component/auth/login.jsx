@@ -23,13 +23,12 @@ function LoginForm() {
         Password: formData.password,
       });
       if (response.data.status == "success") {
-        console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
-        // toast.success(response.data.message);
+        localStorage.setItem("role", response.data.role);
         if(response.data.role == "attendee"){
           navigate("/home")
         }else if(response.data.role == "organizer"){
-          navigate("/dashboard")
+          navigate("/home")
         }else{
           console.log("error")
         }

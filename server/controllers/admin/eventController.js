@@ -64,8 +64,6 @@ class eventController {
                 return res.status(404).json({ status: "failed", message: "Event not found! 😊" });
             }
             res.json({ status: "success", message: "Event updated successfully", data: updatedEvent });
-            console.log("01")
-            console.log("Event updated successfully")
 
         } catch (error) {
             console.log("failed")

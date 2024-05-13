@@ -71,6 +71,7 @@ function ViewEvents() {
                                 <th>Title</th>
                                 <th>Theme</th>
                                 <th>Location</th>
+                                <th>Date</th>
                                 <th>Description</th>
                                 <th>Actions</th>
                             </tr>
@@ -82,6 +83,7 @@ function ViewEvents() {
                                     <td>{event.title}</td>
                                     <td>{event.theme}</td>
                                     <td>{event.location}</td>
+                                    <td>{event.date}</td>
                                     <td>{event.description}</td>
                                     <td>
                                         <Link to={`/update/${event._id}`} className="btn btn-outline-primary mr-2">Update</Link>

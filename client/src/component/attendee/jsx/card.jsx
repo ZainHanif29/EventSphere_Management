@@ -21,18 +21,32 @@ function CardList() {
     fetchEvents();
   }, []);
 
+  // const Events = events.map((event, index) => (
+  //   <div key={index} className="col-md-4 mb-3">
+  //     <div className="card">
+  //       <div className="card-body">
+  //         <h5 className="card-title">{event.title}</h5>
+  //         <p className="card-text">Location: {event.location}</p>
+  //         <p className="card-text">Theme: {event.theme}</p>
+  //         <p className="card-text">Description: {event.description}</p>
+  //         <p className="card-text">Date: {new Date(event.date).toLocaleDateString()}</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // ));
   const Events = events.map((event, index) => (
-    <div key={index} className="col-md-4 mb-3">
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{event.title}</h5>
-          <p className="card-text">Location: {event.location}</p>
-          <p className="card-text">Theme: {event.theme}</p>
-          <p className="card-text">Description: {event.description}</p>
-          <p className="card-text">Date: {new Date(event.date).toLocaleDateString()}</p>
-        </div>
-      </div>
+    <div className="col-md-4 mb-3" key={index}>
+<div className="card text-center" >
+  <div className="card-header">{event.theme}</div>
+  <div className="card-body">
+    <h5 className="card-title">{event.title}</h5>
+    <p className="card-text">{event.description}</p>
+    {/* <a href="#" className="btn btn-primary" data-mdb-ripple-init>Button</a> */}
+  </div>
+  <div className="card-footer text-muted">{new Date(event.date).toLocaleDateString()}</div>
+</div>
     </div>
+
   ));
 
   return (

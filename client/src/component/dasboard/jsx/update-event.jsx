@@ -58,9 +58,10 @@ function UpdateEvent() {
                 return;
             }
 
-            await axios.put(`http://localhost:8000/api/events/${eventId}`, formData, {
+          const res =  await axios.put(`http://localhost:8000/api/events/${eventId}`, formData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
+            console.log(res)
 
             // Optionally, you can display a success message or redirect the user after updating the event
         } catch (error) {
@@ -91,14 +92,24 @@ function UpdateEvent() {
                       value={formData.title}
                       onChange={handleChange}
                   />
-                  <input
+                  {/* <input
                       type="text"
                       className="expoinput "
                       placeholder="Location"
                       name="location"
                       value={formData.location}
                       onChange={handleChange}
-                  />
+                  /> */}
+                  <select
+                      className="expoinput "
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                  >
+                      <option value="Karachi">Karachi</option>
+                      <option value="Lahore">Lahore</option>
+                      <option value="Islamabad">Islamabad</option>
+                  </select>
                   <select
                       className="expoinput "
                       name="theme"
@@ -110,7 +121,8 @@ function UpdateEvent() {
                       <option value="Expo">Expo</option>
                   </select>
                   <input
-                      type="date"
+                    //   type="date"
+                      type="datetime-local"
                       
                       className="expoinput "
                       placeholder="Event Date"
