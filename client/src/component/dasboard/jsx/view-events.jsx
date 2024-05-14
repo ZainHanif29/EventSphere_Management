@@ -58,13 +58,13 @@ function ViewEvents() {
     };
 
     return (
-        <>
+        <div style={{backgroundColor:"coral",width:"100vw",height:"100vh",marginTop:"0% "}}>
             <Nav />
-            <div className="container mt-3">
-                <h2 className="mb-4">Event List</h2>
+            <div className="container " style={{backgroundColor:"coral"}}>
+                <h2 className="" style={{paddingTop:"3em" ,textAlign:"center"}}>Event List</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 {events.length > 0 ? (
-                    <table className="table table-striped">
+                    <table className="table table-striped" >
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -100,7 +100,7 @@ function ViewEvents() {
                     <p className="text-center">No events found.</p>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

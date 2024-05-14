@@ -19,10 +19,10 @@ function Navbar() {
     navigate("/")
   }
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/home">
-          EventSphere_Management
+          EventShphere
         </Link>
         <button
           className="navbar-toggler"
@@ -38,7 +38,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/home">
+              <Link className="nav-link " aria-current="page" to="/home">
                 Home
               </Link>
             </li>
@@ -52,7 +52,7 @@ function Navbar() {
           {res == "success" ? (
             role == "organizer" && (
               <>
-                <Link className="btn btn-outline-primary" to="/viewusers">
+                <Link className="btn" style={{backgroundColor:"coral"}} to="/viewusers">
                   Dasboard
                 </Link> &emsp;
               </>
@@ -63,7 +63,7 @@ function Navbar() {
           )}
 
           {res == "success" ? (
-            <Link className="btn btn-outline-danger" onClick={handleLogout}>
+            <Link className="btn " style={{backgroundColor:"crimson" ,color:"white"}} onClick={handleLogout}>
               Logout
             </Link>
           ) : (

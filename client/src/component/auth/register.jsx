@@ -47,24 +47,25 @@ function SignupForm() {
       );
     }
   };
-
+<style>
+    
+</style>
   return (
-    <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+    <section className="vh-100" style={{ backgroundColor: "#E2C9A6" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-lg-12 col-xl-11">
-            <div className="card text-black" style={{ borderRadius: "25px" }}>
+          <div className="col-lg-12 col-xl-11" >
+            <div className="card text-black " style={{ borderRadius: "25px",boxShadow:"0px 0px 9px 2px coral"}}>
               <div className="card-body p-md-5">
-                <div className="row justify-content-center">
-                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <div className="row justify-content-between">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" >
                     <h2 className="text-center mb-4">Register</h2>
                     <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                       <div className="mb-3">
-                        <label htmlFor="firstName" className="form-label">
-                          First Name
-                        </label>
+                        
                         <input
                           type="text"
+                          placeholder="enter your First Name"
                           className="form-control"
                           id="firstName"
                           name="firstName"
@@ -74,11 +75,9 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="lastName" className="form-label">
-                          Last Name
-                        </label>
                         <input
                           type="text"
+                          placeholder="enter your Last Name"
                           className="form-control"
                           id="lastName"
                           name="lastName"
@@ -88,10 +87,10 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
-                          Email
-                        </label>
+                        
                         <input
+                         placeholder="enter your Email"
+
                           type="email"
                           className="form-control"
                           id="email"
@@ -102,10 +101,10 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="password" className="form-label">
-                          Password
-                        </label>
+                      
                         <input
+                         placeholder="enter your Password"
+
                           type="password"
                           className="form-control"
                           id="password"
@@ -115,23 +114,22 @@ function SignupForm() {
                           required
                         />
                       </div>
-                      <div className="d-flex justify-content-center mx-4 mb-3">
                         <button
                           type="submit"
-                          className="btn btn-primary btn-lg"
+                          className="btn  btn-lg"
+                          style={{backgroundColor:"coral"}}
                         >
                           Register
                         </button>
-                      </div>
                     </form>
                     <div className="text-center mb-3">
-                      <span>Already Register?</span> &nbsp;
+                      <span>Already Have An Account?</span> &nbsp;
                       <Link to="login">Login</Link>
                     </div>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      src="https://img.freepik.com/free-vector/happy-tiny-business-people-dancing-having-fun-drinking-wine-corporate-party-team-building-activity-corporate-event-idea-concept-pinkish-coral-bluevector-isolated-illustration_335657-1414.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705017600&semt=ais"
                       className="img-fluid"
                       alt="Sample image"
                     />

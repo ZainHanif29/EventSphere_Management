@@ -35,22 +35,22 @@ function CardList() {
   //   </div>
   // ));
   const Events = events.map((event, index) => (
-    <div className="col-md-4 mb-3"  key={index}>
-<div className="card text-center" style={{height:"300px"}}>
-  <div className="card-header">{event.theme}</div>
-  <div className="card-body">
-    <h5 className="card-title">{event.title}</h5>
-    <p className="card-text">{event.description}</p>
+    <div className="col-md-4 mb-3"  key={index}  >
+<div className="card text-center" style={{height:"300px",boxShadow :"0px 0px 6px 2px coral"}}>
+  <div className="card-body" >
+    <h3 className="card-title">{event.title}</h3>
+    <p className="card-header">{event.theme}</p>
+    <p className="card-text" >{event.description}</p>
     {/* <a href="#" className="btn btn-primary" data-mdb-ripple-init>Button</a> */}
   </div>
-  <div className="card-footer text-muted">{new Date(event.date).toLocaleDateString()}</div>
+  <div className="card-footer text-muted" >{new Date(event.date).toLocaleDateString()}</div>
 </div>
     </div>
 
   ));
 
   return (
-    <div className="container">
+    <div className="container" style={{backgroundColor:"coral"}}>
       <div className="row">
         {Events}
       </div>

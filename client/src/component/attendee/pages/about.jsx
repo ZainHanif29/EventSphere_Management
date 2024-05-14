@@ -5,10 +5,10 @@ import Footer from "../jsx/footer";
 
 const AboutUs = () => {
   return (
-    <>
+    <div style={{backgroundColor:"coral"}}>
       <Navbar />
-
-      <div className="container mt-5">
+      
+      <div className="container mt-5" style={{backgroundColor:"coral",width:"100%"}}>
         <div className="row">
           <div className="col">
             <h2 className="mb-4">About Us</h2>
@@ -54,7 +54,7 @@ const AboutUs = () => {
       </div>
       <Footer />
 
-    </>
+    </div>
   );
 };
 

@@ -33,8 +33,8 @@ const year = new Date().getFullYear();
             <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
               <h5 className="text-uppercase mb-4">Opening hours</h5>
 
-              <table className="table text-center text-white">
-                <tbody className="fw-normal">
+              <table className="table text-center text-white  table-dark" >
+                <tbody className="fw-normal" >
                   <tr>
                     <td>Mon - Thu:</td>
                     <td>8am - 9pm</td>

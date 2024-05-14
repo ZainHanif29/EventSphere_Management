@@ -15,12 +15,12 @@ const HomePage = () => {
     }
   });
   return (
-    <>
+    <div className="" style={{backgroundColor:"coral"}}>
       <Navbar />
       <Carousel />
       <CardList />
       <Footer />
-    </>
+    </div>
   );
 };
 
