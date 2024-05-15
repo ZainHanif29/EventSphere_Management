@@ -62,10 +62,12 @@ function SignupForm() {
                     <h2 className="text-center mb-4">Register</h2>
                     <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                       <div className="mb-3">
-                        
+                      <label htmlFor="FirstName" className="form-label">
+                      First Name
+                        </label>
                         <input
                           type="text"
-                          placeholder="enter your First Name"
+                          // placeholder="enter your First Name"
                           className="form-control"
                           id="firstName"
                           name="firstName"
@@ -75,9 +77,12 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
+                      <label htmlFor="LastName" className="form-label">
+                      Last Name
+                        </label>
                         <input
                           type="text"
-                          placeholder="enter your Last Name"
+                          // placeholder="enter your Last Name"
                           className="form-control"
                           id="lastName"
                           name="lastName"
@@ -87,9 +92,11 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
-                        
+                      <label htmlFor="Email" className="form-label">
+                      Email
+                        </label>
                         <input
-                         placeholder="enter your Email"
+                        //  placeholder="enter your Email"
 
                           type="email"
                           className="form-control"
@@ -101,9 +108,11 @@ function SignupForm() {
                         />
                       </div>
                       <div className="mb-3">
-                      
+                      <label htmlFor="password" className="form-label">
+                          Password
+                        </label>
                         <input
-                         placeholder="enter your Password"
+                        //  placeholder="enter your Password"
 
                           type="password"
                           className="form-control"

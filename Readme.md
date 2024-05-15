@@ -5,13 +5,7 @@ Mongodb Atlas URL: mongodb+srv://zainhanif20002902:Student1332890@clusterevent.9
 
 organizer/admin register
 [
-  {
-      "FirstName": "Michael",
-      "LastName": "Brown",
-      "Email": "michaelbrown@example.com",
-      "Password": "securePass123",
-      "Role": "organizer"
-  }
+
   {
       "FirstName": "Sarah",
       "LastName": "Davis",
@@ -19,17 +13,18 @@ organizer/admin register
       "Password": "myPassword456",
       "Role": "organizer"
   }
-]
-
-user/attendee register
-[
-     {
+      {
       "FirstName": "William",
       "LastName": "Taylor",
       "Email": "williamtaylor@example.com",
       "Password": "password789",
-      "Role": "attendee"
-  },
+      "Role": "organizer"
+  }
+]
+
+user/attendee register
+[
+ 
   {
       "FirstName": "Emily",
       "LastName": "Clark",

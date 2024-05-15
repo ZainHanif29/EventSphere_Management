@@ -63,9 +63,9 @@ function Navbar() {
           )}
 
           {res == "success" ? (
-            <Link className="btn " style={{backgroundColor:"crimson" ,color:"white"}} onClick={handleLogout}>
+            <button className="btn " style={{backgroundColor:"crimson" ,color:"white"}} onClick={handleLogout}>
               Logout
-            </Link>
+            </button>
           ) : (
         <></>
           )}
